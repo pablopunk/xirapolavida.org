@@ -1,7 +1,7 @@
-import { API_URL } from 'constants/api'
 import Posts from 'components/Posts'
 import { FunctionComponent } from 'react'
 import { Post } from 'cosmicjs/types'
+import { getPosts } from 'cosmicjs/api'
 
 type Props = {
   posts: Post[]
@@ -21,7 +21,7 @@ const Index: FunctionComponent<Props> = ({ posts }) => {
 }
 
 export async function getStaticProps() {
-  const { posts } = await fetch(API_URL + '/posts').then(r => r.json())
+  const posts = await getPosts()
 
   return {
     props: { posts }
