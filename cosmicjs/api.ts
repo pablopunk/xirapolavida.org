@@ -9,21 +9,21 @@ const bucket = api.bucket({
 })
 
 export async function getPosts(): Promise<Post[]> {
-  const data = await bucket.getObjects({
-    query: { type: 'publicacions' },
-    props: 'slug,title,content,thumbnail'
-  })
-
-  const posts = data.objects
-
-  return posts
+  return bucket
+    .getObjects({
+      query: { type: 'publicacions' },
+      props: 'slug,title,content,thumbnail'
+    })
+    .then(data => data.objects)
+    .catch(() => [])
 }
 
 export async function getPost(slug: string) {
-  const data = await bucket.getObjects({
-    query: { slug },
-    props: 'title,content,slug,thumbnail'
-  })
-
-  return data.objects[0]
+  return bucket
+    .getObjects({
+      query: { slug },
+      props: 'title,content,slug,thumbnail'
+    })
+    .then(data => data.objects[0])
+    .catch(() => null)
 }
