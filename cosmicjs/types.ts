@@ -3,4 +3,5 @@ export type Post = {
   slug: string
   content: string // html
   thumbnail: string // url
+  published_at: string
 }

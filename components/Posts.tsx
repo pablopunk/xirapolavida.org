@@ -9,6 +9,7 @@ type Props = { posts: Post[] }
 const Posts: FunctionComponent<Props> = ({ posts }) => (
   <div className="">
     {posts.map(post => {
+      const date = new Date(post.published_at).toLocaleDateString()
       const content = parseParagraphs(post.content)
         .map(node => node.rawText)
         .filter(Boolean)
@@ -36,8 +37,9 @@ const Posts: FunctionComponent<Props> = ({ posts }) => (
                   />
                 </div>
               </div>
-              <div className="ml-4 h-full my-auto pr-4">
-                <h3 className="text-2xl my-4 block text-accent group-hover:text-accent2 transition-colors">
+              <div className="ml-4 h-full w-full my-auto pr-4">
+                <div className="opacity-70">{date}</div>
+                <h3 className="text-2xl my-2 block text-accent group-hover:text-accent2 transition-colors">
                   {post.title}
                 </h3>
                 <div className="hidden md:block max-w-lg">

@@ -9,20 +9,26 @@ const bucket = api.bucket({
 })
 
 export async function getPosts(): Promise<Post[]> {
-  return bucket
-    .getObjects({
-      query: { type: 'publicacions' },
-      props: 'slug,title,content,thumbnail'
-    })
-    .then(data => data.objects)
-    .catch(() => [])
+  return (
+    bucket
+      .getObjects({
+        query: { type: 'publicacions' },
+        props: 'slug,title,content,thumbnail,published_at'
+      })
+      .then(data => data.objects)
+      // .then(x => {
+      //   console.log(x)
+      //   return x
+      // })
+      .catch(() => [])
+  )
 }
 
 export async function getPost(slug: string) {
   return bucket
     .getObjects({
       query: { slug },
-      props: 'title,content,slug,thumbnail'
+      props: 'title,content,slug,thumbnail,published_at'
     })
     .then(data => data.objects[0])
     .catch(() => null)

@@ -15,7 +15,10 @@ const PostComponent: FunctionComponent<Props> = ({ post }) => (
         className="rounded-lg"
       />
     </div>
-    <h2 className="text-3xl py-5 text-accent text-center">{post.title}</h2>
+    <div className="text-center">
+      {new Date(post.published_at).toLocaleDateString()}
+    </div>
+    <h2 className="text-3xl pt-2 pb-4 text-accent text-center">{post.title}</h2>
     <div
       className="max-w-2xl mx-auto px-3"
       dangerouslySetInnerHTML={{ __html: post.content }}
