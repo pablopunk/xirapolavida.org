@@ -12,11 +12,12 @@ const PostComponent: FunctionComponent<Props> = ({ post }) => (
         width="1920"
         height="1080"
         objectFit="cover"
+        className="rounded-lg"
       />
     </div>
-    <h2 className="text-3xl py-5 text-accent">{post.title}</h2>
+    <h2 className="text-3xl py-5 text-accent text-center">{post.title}</h2>
     <div
-      className="max-w-xl mx-auto"
+      className="max-w-2xl mx-auto px-3"
       dangerouslySetInnerHTML={{ __html: post.content }}
     ></div>
   </div>

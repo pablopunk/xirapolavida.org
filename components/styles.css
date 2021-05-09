@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body {
-  --color-bg: white;
-  --color-bgDim: lightcyan;
+  --color-bg: rgba(80, 111, 150, 0.04);
+  --color-bgDim: white;
   --color-fg: black;
   --color-accent: darkred;
   --color-accent2: dodgerblue;
 
+  color: var(--color-fg);
+  background-color: var(--color-bg);
   font-family: 'Source Sans Pro', sans-serif;
 }
 

@@ -1,3 +1,3 @@
-# [galizazapatista.org](https://galizazapatista.org)
+# [xirapolavida.org](https://xirapolavida.org)
 
 > Blog w/ CosmicJS + NextJS

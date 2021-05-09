@@ -12,36 +12,47 @@ const Posts: FunctionComponent<Props> = ({ posts }) => (
       const content = parseParagraphs(post.content)
         .map(node => node.rawText)
         .filter(Boolean)
+        .slice(0, 3)
 
       return (
-        <div
-          key={post.slug}
-          className="mx-auto mb-10 md:mx-0 flex flex-col md:flex-row items-center"
-        >
+        <div key={post.slug}>
           <Link href={`/posts/${post.slug}`}>
-            <a className="hover:opacity-90 transition-opacity">
-              <div className="relative w-[420px] h-[300px] rounded-2xl shadow-xl">
-                <Image
-                  src={post.thumbnail}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-2xl"
-                />
+            <a className="mx-auto mb-10 md:mx-0 flex flex-col md:flex-row items-center md:bg-bgDim rounded-lg md:shadow-lg group hover:cursor-pointer">
+              <div className="group-hover:opacity-90 transition-opacity">
+                <div className="hidden md:block relative w-[210px] h-[150px] rounded-lg shadow-xl">
+                  <Image
+                    src={post.thumbnail}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-tl-lg rounded-bl-lg"
+                  />
+                </div>
+                <div className="block md:hidden">
+                  <Image
+                    src={post.thumbnail}
+                    width="1920"
+                    height="1080"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
+              <div className="ml-4 h-full my-auto pr-4">
+                <h3 className="text-2xl my-4 block text-accent group-hover:text-accent2 transition-colors">
+                  {post.title}
+                </h3>
+                <div className="hidden md:block max-w-lg">
+                  <div className="line-clamp-2">
+                    {content.map(html => (
+                      <p
+                        key={html}
+                        dangerouslySetInnerHTML={{ __html: html }}
+                      ></p>
+                    ))}
+                  </div>
+                </div>
               </div>
             </a>
           </Link>
-          <div className="ml-4 h-full my-auto">
-            <Link href={`/posts/${post.slug}`}>
-              <a className="block text-accent hover:text-accent2 transition-colors">
-                <h3 className="text-2xl my-4">{post.title}</h3>
-              </a>
-            </Link>
-            <div className="line-clamp-9 max-w-lg">
-              {content.map(html => (
-                <p key={html} dangerouslySetInnerHTML={{ __html: html }}></p>
-              ))}
-            </div>
-          </div>
         </div>
       )
     })}
