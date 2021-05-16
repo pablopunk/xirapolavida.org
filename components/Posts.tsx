@@ -13,7 +13,7 @@ const Posts: FunctionComponent<Props> = ({ posts }) => (
       const content = parseParagraphs(post.content)
         .map(node => node.rawText)
         .filter(Boolean)
-        .slice(0, 3)
+        .slice(0, 1)
 
       return (
         <div key={post.slug}>
@@ -43,7 +43,7 @@ const Posts: FunctionComponent<Props> = ({ posts }) => (
                   {post.title}
                 </h3>
                 <div className="hidden md:block max-w-lg">
-                  <div className="line-clamp-2">
+                  <div className="line-clamp-1">
                     {content.map(html => (
                       <p
                         key={html}

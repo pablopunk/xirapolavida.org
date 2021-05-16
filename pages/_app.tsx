@@ -1,14 +1,15 @@
-import React, { FunctionComponent } from 'react';
-
-import 'tailwindcss/tailwind.css';
-import 'components/styles.css';
-import Layout from 'components/Layout';
+import React, { FunctionComponent } from 'react'
+import SimpleReactLightbox from 'simple-react-lightbox'
+import 'tailwindcss/tailwind.css'
+import 'components/styles.css'
+import Layout from 'components/Layout'
 
 const App: FunctionComponent<any> = ({ Component, pageProps }) => (
-    <Layout>
-        <Component {...pageProps} />
-    </Layout>
-);
+  <Layout>
+    <SimpleReactLightbox>
+      <Component {...pageProps} />
+    </SimpleReactLightbox>
+  </Layout>
+)
 
-export default App;
-
+export default App
