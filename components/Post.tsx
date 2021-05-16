@@ -34,10 +34,6 @@ type Props = { post: Post }
 
 const PostComponent: FunctionComponent<Props> = ({ post }) => (
   <div>
-    <div className="text-center">
-      {new Date(post.published_at).toLocaleDateString()}
-    </div>
-    <h2 className="text-3xl pt-2 pb-4 text-accent text-center">{post.title}</h2>
     <div className="relative max-w-3xl mx-auto">
       <Image
         src={post.thumbnail}
@@ -47,6 +43,10 @@ const PostComponent: FunctionComponent<Props> = ({ post }) => (
         className="rounded-lg"
       />
     </div>
+    <div className="text-center">
+      {new Date(post.published_at).toLocaleDateString()}
+    </div>
+    <h2 className="text-3xl pt-2 pb-4 text-accent text-center">{post.title}</h2>
     <SRLWrapper>
       <Body
         className="max-w-2xl mx-auto px-3"
