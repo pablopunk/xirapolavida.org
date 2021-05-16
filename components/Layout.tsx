@@ -24,12 +24,12 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
         <Nav />
       </header>
       {asPath === '/' && (
-        <div className="relative h-[100px] w-[110%] -ml-3 overflow-hidden">
+        <div className="relative h-[100px]">
           <Image
             src="/header.jpg"
             layout="fill"
             objectFit="cover"
-            className="filter blur-md"
+            className="filter blur-md transform scale-110"
           />
         </div>
       )}
