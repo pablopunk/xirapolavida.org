@@ -38,13 +38,10 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
       </div>
       <div className="relative h-[60px]">
         <div className="bg-fg text-bgDim opacity-70 flex items-center justify-center z-10 h-[60px] absolute left-0 right-0">
-          <p className="px-4">
+          <p className="px-4 opacity-80 hidden md:block">
             Coordinadora galega da Xira zapatista pola Vida. 2021
           </p>
-          <a
-            href="mailto:xirapolavida@riseup.net px-4"
-            className="px-4 text-accent2"
-          >
+          <a href="mailto:xirapolavida@riseup.net px-4" className="px-4">
             xirapolavida@riseup.net
           </a>
         </div>
