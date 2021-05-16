@@ -36,17 +36,25 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
       <div className="mx-auto max-w-4xl flex items-center justify-center">
         <main className="p-2">{children}</main>
       </div>
-      <footer className="bg-fg h-[60px] flex items-center justify-center">
-        <p className="text-bgDim opacity-60 px-4">
-          Coordinadora galega da Xira zapatista pola Vida. 2021
-        </p>
-        <a
-          href="mailto:xirapolavida@riseup.net px-4"
-          className="text-bgDim opacity-80"
-        >
-          xirapolavida@riseup.net
-        </a>
-      </footer>
+      <div className="relative h-[60px]">
+        <div className="bg-fg text-bgDim opacity-70 flex items-center justify-center z-10 h-[60px] absolute left-0 right-0">
+          <p className="px-4">
+            Coordinadora galega da Xira zapatista pola Vida. 2021
+          </p>
+          <a
+            href="mailto:xirapolavida@riseup.net px-4"
+            className="px-4 text-accent2"
+          >
+            xirapolavida@riseup.net
+          </a>
+        </div>
+        <Image
+          src="/header.jpg"
+          layout="fill"
+          objectFit="cover"
+          className="filter blur-md transform scale-110 "
+        />
+      </div>
     </>
   )
 }

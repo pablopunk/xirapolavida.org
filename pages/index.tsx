@@ -11,7 +11,7 @@ type Props = {
 const Index: FunctionComponent<Props> = ({ posts }) => {
   return (
     <>
-      <div className="bg-bgDim px-2 py-4 rounded-xl max-w-2xl text-center shadow-lg my-4 mx-auto">
+      <div className="bg-bgDim p-3 rounded-xl max-w-2xl text-center shadow-lg my-4 mx-auto">
         <h2 className="font-bold text-xl">
           Coordinadora <span className="text-accent2">galega</span> da Xira
           zapatista pola Vida
