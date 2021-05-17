@@ -7,6 +7,9 @@ body {
   --color-accent: darkred;
   --color-accent2: dodgerblue;
 
+  --header-height: 76px;
+  --footer-height: 60px;
+
   color: var(--color-fg);
   background-color: var(--color-bg);
   font-family: 'Source Sans Pro', sans-serif;

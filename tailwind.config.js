@@ -10,6 +10,10 @@ module.exports = {
         bgDim: 'var(--color-bgDim)',
         accent: 'var(--color-accent)',
         accent2: 'var(--color-accent2)'
+      },
+      spacing: {
+        header: 'var(--header-height)',
+        footer: 'var(--footer-height)'
       }
     }
   },
