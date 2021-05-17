@@ -33,3 +33,11 @@ export async function getPost(slug: string) {
     .then(data => data.objects[0])
     .catch(() => null)
 }
+
+export async function getColectivos() {
+  return bucket
+    .getObjects({ query: { id: '60a2b4aca3d4f40008148afc' } })
+    .then(data => data.objects[0])
+    .then(data => data?.metadata?.text?.split('\n'))
+    .catch(() => null)
+}

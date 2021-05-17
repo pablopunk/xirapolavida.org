@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import { FiExternalLink } from 'react-icons/fi'
 import { FaPeopleCarry } from 'react-icons/fa'
 import { HiMenuAlt3 } from 'react-icons/hi'
@@ -6,6 +6,7 @@ import { MdClose } from 'react-icons/md'
 import Link from 'next/link'
 import classNames from 'classnames'
 import { useLockBodyScroll } from 'react-use'
+import { useRouter } from 'next/router'
 
 const links = [
   {
@@ -22,8 +23,13 @@ const links = [
 
 const Nav: FunctionComponent = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { asPath } = useRouter()
 
   useLockBodyScroll(isOpen)
+
+  useEffect(() => {
+    setIsOpen(false)
+  }, [asPath])
 
   return (
     <nav className="">
