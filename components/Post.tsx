@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react'
 import { Post } from 'cosmicjs/types'
-import Image from 'next/image'
 import styled from 'styled-components'
 import { SRLWrapper } from 'simple-react-lightbox'
 
@@ -24,6 +23,8 @@ const Body = styled.article`
     cursor: zoom-in;
     filter: grayscale(80%);
   }
+  h1,
+  h2,
   h3 {
     margin: 2rem 0 1rem;
     font-size: 2rem;
@@ -35,13 +36,7 @@ type Props = { post: Post }
 const PostComponent: FunctionComponent<Props> = ({ post }) => (
   <div>
     <div className="relative max-w-3xl mx-auto">
-      <Image
-        src={post.thumbnail}
-        width="1920"
-        height="1080"
-        objectFit="cover"
-        className="rounded-lg"
-      />
+      <img src={post.thumbnail} className="rounded-lg" loading="lazy" />
     </div>
     <div className="text-center">
       {new Date(post.published_at).toLocaleDateString()}
