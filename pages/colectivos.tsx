@@ -18,7 +18,7 @@ const Colectivos: FunctionComponent<Props> = ({ colectivos }) => {
 export async function getStaticProps() {
   const colectivos = await getColectivos()
 
-  return { props: { colectivos } }
+  return { props: { colectivos }, revalidate: 60 }
 }
 
 export default Colectivos
