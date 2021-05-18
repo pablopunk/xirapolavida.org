@@ -17,7 +17,7 @@ const Posts: FunctionComponent<Props> = ({ posts }) => (
 
       return (
         <div key={post.slug}>
-          <Link href={`/posts/${post.slug}`}>
+          <Link href={`/${post.slug}`}>
             <a className="mx-auto mb-10 md:mx-0 flex flex-col md:flex-row items-center md:bg-bgDim rounded-lg md:shadow-lg group hover:cursor-pointer">
               <div className="group-hover:opacity-90 transition-opacity">
                 <div className="hidden md:block relative w-[210px] h-[150px] rounded-lg shadow-xl">
