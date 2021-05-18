@@ -27,17 +27,17 @@ export default class MyDocument extends Document {
     }
   }
 
-  render() {
-    return (
-      <Html>
-        <Head>
-          <script data-goatcounter="/goat" async src="/count.js"></script>
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+  // render() {
+  //   return (
+  //     <Html>
+  //       <Head>
+  //         <script data-goatcounter="/goat" async src="/count.js"></script>
+  //       </Head>
+  //       <body>
+  //         <Main />
+  //         <NextScript />
+  //       </body>
+  //     </Html>
+  //   )
+  // }
 }
