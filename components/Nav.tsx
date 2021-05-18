@@ -52,8 +52,8 @@ const Nav: FunctionComponent = () => {
       >
         {links.map(link => (
           <Link key={link.url} href={link.url}>
-            <a className="flex items-center underline px-1 py-3 md:flex-row-reverse md:no-underline hover:text-accent2 transition-colors">
-              <link.Icon className="pr-1 md:pl-1 md:text-2xl" />
+            <a className="flex items-center px-2 py-3 md:flex-row-reverse hover:text-accent2 transition-colors border-t last:border-b md:border-none">
+              <link.Icon className="pr-1 md:pr-0 md:pl-1 md:text-2xl" />
               <span>{link.label}</span>
             </a>
           </Link>

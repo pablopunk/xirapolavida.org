@@ -16,7 +16,7 @@ const Index: FunctionComponent<Props> = ({ posts }) => {
           Coordinadora <span className="text-accent2">galega</span> da Xira
           zapatista pola Vida
         </h2>
-        <p className="text-lg">
+        <p className="text-lg mt-2">
           Somos un grupo de{' '}
           <Link href="/colectivos">
             <a className="text-accent2">colectivos</a>
