@@ -18,7 +18,7 @@ module.exports = {
       {
         source: '/fonts',
         destination:
-          'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap'
+          'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap'
       }
     ]
   }
