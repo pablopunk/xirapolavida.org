@@ -29,6 +29,10 @@ const Body = styled.article`
     margin: 2rem 0 1rem;
     font-size: 2rem;
   }
+  iframe {
+    width: 100%;
+    height: 400px;
+  }
 `
 
 type Props = { post: Post }
