@@ -4,6 +4,8 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import PostComponent from 'components/Post'
 import { getPost, getPosts } from 'cosmicjs/api'
 import { useRouter } from 'next/router'
+import Seo from 'components/Seo'
+import { parseParagraphs } from 'utils/htmlParser'
 
 type Props = { post: Post }
 
@@ -14,7 +16,21 @@ const PostPage: FunctionComponent<Props> = ({ post }) => {
     return <p className="mt-6 text-xl">Cargando publicación...</p>
   }
 
-  return <PostComponent post={post} />
+  const description = parseParagraphs(post.content)
+    .map(node => node.text)
+    .filter(Boolean)
+    .join('\n')
+
+  return (
+    <>
+      <Seo
+        title={post.title}
+        description={description}
+        imageUrl={post.thumbnail}
+      />
+      <PostComponent post={post} />
+    </>
+  )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ctx => {

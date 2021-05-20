@@ -20,6 +20,7 @@
     "cosmicjs": "^4.1.2",
     "eslint-config-prettier": "^8.3.0",
     "next": "^10.2.1-canary.5",
+    "next-seo": "^4.24.0",
     "node-html-parser": "^3.2.0",
     "postcss": "^8.2.14",
     "react": "^17.0.2",

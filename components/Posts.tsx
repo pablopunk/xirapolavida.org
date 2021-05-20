@@ -11,7 +11,7 @@ const Posts: FunctionComponent<Props> = ({ posts }) => (
     {posts.map(post => {
       const date = new Date(post.published_at).toLocaleDateString()
       const content = parseParagraphs(post.content)
-        .map(node => node.rawText)
+        .map(node => node.text)
         .filter(Boolean)
         .slice(0, 1)
 
