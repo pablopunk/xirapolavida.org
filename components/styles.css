@@ -1,4 +1,4 @@
-@import url('/fonts');
+@import './fonts.css';
 
 body {
   --color-bg: rgba(80, 111, 150, 0.07);
