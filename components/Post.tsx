@@ -33,6 +33,9 @@ const Body = styled.article`
     width: 100%;
     height: 400px;
   }
+  ul > li {
+    margin-left: 1rem;
+  }
 `
 
 type Props = { post: Post }

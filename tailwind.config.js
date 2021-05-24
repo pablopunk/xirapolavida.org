@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: ['./pages/**/*.tsx', './components/**/*.tsx'],
   mode: 'jit',
@@ -9,7 +11,8 @@ module.exports = {
         bg: 'var(--color-bg)',
         bgDim: 'var(--color-bgDim)',
         accent: 'var(--color-accent)',
-        accent2: 'var(--color-accent2)'
+        accent2: 'var(--color-accent2)',
+        ...colors
       },
       spacing: {
         header: 'var(--header-height)',

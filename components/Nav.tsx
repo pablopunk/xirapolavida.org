@@ -1,5 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import { FiExternalLink } from 'react-icons/fi'
+import { BiCalendarWeek } from 'react-icons/bi'
 import { FaPeopleCarry } from 'react-icons/fa'
 import { HiMenuAlt3 } from 'react-icons/hi'
 import { MdClose } from 'react-icons/md'
@@ -9,6 +10,11 @@ import { useLockBodyScroll } from 'react-use'
 import { useRouter } from 'next/router'
 
 const links = [
+  {
+    label: 'Eventos',
+    Icon: BiCalendarWeek,
+    url: '/eventos'
+  },
   {
     label: 'Colectivos',
     Icon: FaPeopleCarry,
@@ -57,7 +63,14 @@ const Nav: FunctionComponent = () => {
       >
         {links.map(link => (
           <Link key={link.url} href={link.url}>
-            <a className="flex items-center px-2 py-3 md:flex-row-reverse transition-colors md:hover:bg-bg hover:text-accent2 transition-colors border-t last:border-b md:border-none text-lg">
+            <a
+              className={classNames(
+                'flex items-center px-2 py-3 md:flex-row-reverse transition-colors md:hover:bg-bg hover:text-accent2 transition-colors border-t last:border-b md:border-none text-lg rounded-md',
+                {
+                  'text-accent': asPath === link.url
+                }
+              )}
+            >
               <link.Icon className="pr-1 md:pr-0 md:pl-1" />
               <span>{link.label}</span>
             </a>

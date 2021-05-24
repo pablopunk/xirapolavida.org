@@ -13,7 +13,7 @@ export async function getPosts(): Promise<Post[]> {
     bucket
       .getObjects({
         query: { type: 'publicacions' },
-        props: 'slug,title,content,thumbnail,published_at'
+        props: 'slug,title,content,thumbnail,published_at,metadata'
       })
       .then(data => data.objects)
       // .then(x => {
@@ -28,7 +28,7 @@ export async function getPost(slug: string) {
   return bucket
     .getObjects({
       query: { slug },
-      props: 'title,content,slug,thumbnail,published_at'
+      props: 'title,content,slug,thumbnail,published_at,metadata'
     })
     .then(data => data.objects[0])
     .catch(() => null)

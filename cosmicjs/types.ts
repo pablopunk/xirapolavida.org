@@ -4,4 +4,7 @@ export type Post = {
   content: string // html
   thumbnail: string // url
   published_at: string
+  metadata: {
+    categories: string
+  }
 }
