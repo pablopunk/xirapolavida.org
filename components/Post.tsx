@@ -42,8 +42,8 @@ type Props = { post: Post }
 
 const PostComponent: FunctionComponent<Props> = ({ post }) => (
   <div>
-    <div className="relative max-w-3xl mx-auto">
-      <img src={post.thumbnail} className="rounded-lg" loading="lazy" />
+    <div className="relative max-w-3xl mx-auto w-full">
+      <img src={post.thumbnail} className="rounded-lg mx-auto" loading="lazy" />
     </div>
     <div className="text-center">
       {new Date(post.published_at).toLocaleDateString()}
