@@ -50,7 +50,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
           <p className="px-4 opacity-80 hidden md:block">
             Coordinadora galega da Xira zapatista pola Vida. 2021
           </p>
-          <a href="mailto:xirapolavida@riseup.net px-4" className="px-4">
+          <a href="mailto:xirapolavida@riseup.net" className="px-4">
             xirapolavida@riseup.net
           </a>
         </div>
