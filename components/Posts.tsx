@@ -27,13 +27,13 @@ const Posts: FunctionComponent<Props> = ({ posts, filter }) => (
           <div key={post.slug}>
             <Link href={`/${post.slug}`} passHref>
               <a className="mx-auto mb-10 md:mx-0 flex flex-col md:flex-row items-center md:bg-bgDim rounded-lg md:shadow-lg group hover:cursor-pointer">
-                <div className="group-hover:opacity-90 transition-opacity">
+                <div>
                   <div className="hidden md:block relative w-[210px] h-[150px] rounded-lg shadow-xl">
                     <Image
                       src={post.thumbnail}
                       layout="fill"
                       objectFit="cover"
-                      className="rounded-tl-lg rounded-bl-lg"
+                      className="rounded-tl-lg rounded-bl-lg filter group-hover:grayscale group-hover:opacity-80 transition-all"
                     />
                   </div>
                   <div className="block md:hidden">

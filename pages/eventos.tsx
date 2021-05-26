@@ -29,11 +29,6 @@ const Eventos: FunctionComponent<Props> = ({ posts }) => {
           Aquí podes consultar os próximos actos da coordinadora galega
         </p>
       </div>
-      <h3 className="text-3xl py-6 text-center md:text-left">
-        {posts.length > 0
-          ? 'Últimas publicacións'
-          : 'Aínda non hai publicacións'}
-      </h3>
       <Posts posts={posts} filter={post => isEvent(post)} />
     </>
   )
