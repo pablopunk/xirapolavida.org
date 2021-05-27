@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 }
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  const posts = await getPosts()
+  const { posts } = await getPosts()
   const paths = posts.map(post => ({ params: { slug: post.slug } }))
 
   return { paths, fallback: true }

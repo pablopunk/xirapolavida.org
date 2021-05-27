@@ -5,18 +5,37 @@ import { parseParagraphs } from 'utils/htmlParser'
 import Link from 'next/link'
 import { isEvent } from 'cosmicjs/utils'
 import { BiCalendarWeek } from 'react-icons/bi'
+import { useState } from 'react'
+import LoadMore from './LoadMore'
 
 type Props = {
-  posts: Post[]
-  // eslint-disable-next-line no-unused-vars
-  filter?: (post: Post) => boolean
+  initialPosts: Post[]
+  total: number
+  filters: string
 }
 
-const Posts: FunctionComponent<Props> = ({ posts, filter }) => (
-  <div className="">
-    {posts
-      .filter(post => (typeof filter === 'function' ? filter(post) : true))
-      .map(post => {
+const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
+  const [{ posts, page }, setState] = useState({ posts: initialPosts, page: 1 })
+
+  const fetchMorePosts = () => {
+    const url = filters
+      ? `/api/posts/${page}?filters=${filters}`
+      : `/api/posts/${page}?`
+    return fetch(url)
+      .then(r => r.json())
+      .then(responseData => {
+        setState({
+          page: page + 1,
+          posts: [...posts, ...responseData.posts]
+        })
+      })
+  }
+
+  const canLoadMore = posts.length < total
+
+  return (
+    <div>
+      {posts.map(post => {
         const date = new Date(post.published_at).toLocaleDateString()
         const content = parseParagraphs(post.content)
           .map(node => node.text)
@@ -76,7 +95,9 @@ const Posts: FunctionComponent<Props> = ({ posts, filter }) => (
           </div>
         )
       })}
-  </div>
-)
+      <LoadMore canLoadMore={canLoadMore} onLoadMore={fetchMorePosts} />
+    </div>
+  )
+}
 
 export default Posts

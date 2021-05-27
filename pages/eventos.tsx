@@ -1,9 +1,8 @@
 import Posts from 'components/Posts'
 import Seo from 'components/Seo'
 import { FunctionComponent } from 'react'
-import { getPosts } from 'cosmicjs/api'
+import { getEventos, POSTS_FILTERS } from 'cosmicjs/api'
 import { SITE_URL } from 'components/constants'
-import { isEvent } from 'cosmicjs/utils'
 import { Post } from 'cosmicjs/types'
 
 const TITLE = 'Eventos | Xira pola vida'
@@ -13,9 +12,10 @@ Neste blogue podes obter información sobre a chegada, a benvida, e todos os act
 
 type Props = {
   posts: Post[]
+  total: number
 }
 
-const Eventos: FunctionComponent<Props> = ({ posts }) => {
+const Eventos: FunctionComponent<Props> = ({ posts, total }) => {
   return (
     <>
       <Seo
@@ -29,16 +29,20 @@ const Eventos: FunctionComponent<Props> = ({ posts }) => {
           Aquí podes consultar os próximos actos da coordinadora galega
         </p>
       </div>
-      <Posts posts={posts} filter={post => isEvent(post)} />
+      <Posts
+        initialPosts={posts}
+        total={total}
+        filters={JSON.stringify(POSTS_FILTERS.eventos)}
+      />
     </>
   )
 }
 
 export async function getStaticProps() {
-  const posts = await getPosts()
+  const { posts, total } = await getEventos()
 
   return {
-    props: { posts },
+    props: { posts, total },
     revalidate: 60
   }
 }

@@ -13,9 +13,10 @@ Neste blogue podes obter información sobre a chegada, a benvida, e todos os act
 
 type Props = {
   posts: Post[]
+  total: number
 }
 
-const Index: FunctionComponent<Props> = ({ posts }) => {
+const Index: FunctionComponent<Props> = ({ posts, total }) => {
   return (
     <>
       <Seo
@@ -42,16 +43,16 @@ const Index: FunctionComponent<Props> = ({ posts }) => {
           ? 'Últimas publicacións'
           : 'Aínda non hai publicacións'}
       </h3>
-      <Posts posts={posts} />
+      <Posts initialPosts={posts} total={total} />
     </>
   )
 }
 
 export async function getStaticProps() {
-  const posts = await getPosts()
+  const { posts, total } = await getPosts()
 
   return {
-    props: { posts },
+    props: { posts, total },
     revalidate: 60
   }
 }

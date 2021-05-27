@@ -1,27 +1,52 @@
 import Cosmic from 'cosmicjs'
 import { Post } from './types'
 
-const api = Cosmic()
+const PAGE_SIZE = 5
 
+const api = Cosmic()
 const bucket = api.bucket({
   slug: process.env.COSMICJS_BUCKET_SLUG,
   read_key: process.env.COSMICJS_READ_KEY
 })
 
-export async function getPosts(): Promise<Post[]> {
-  return (
-    bucket
-      .getObjects({
-        query: { type: 'publicacions' },
-        props: 'slug,title,content,thumbnail,published_at,metadata'
-      })
-      .then(data => data.objects)
-      // .then(x => {
-      //   console.log(x)
-      //   return x
-      // })
-      .catch(() => [])
-  )
+type Options = {
+  page?: number
+  filters?: { [key: string]: any } // e.g 'metadata.categories': { $regex: 'eventos' }
+}
+
+export const POSTS_FILTERS = {
+  eventos: {
+    'metadata.categories': { $regex: 'eventos' }
+  }
+}
+
+export async function getEventos(options?: Options): Promise<{
+  posts: Post[]
+  total: number
+}> {
+  return getPosts({
+    ...options,
+    filters: POSTS_FILTERS.eventos
+  })
+}
+
+export async function getPosts(options?: Options): Promise<{
+  posts: Post[]
+  total: number
+}> {
+  return bucket
+    .getObjects({
+      query: { type: 'publicacions', ...(options?.filters || {}) },
+      props: 'slug,title,content,thumbnail,published_at,metadata',
+      limit: PAGE_SIZE,
+      sort: '-created_at',
+      skip: PAGE_SIZE * options?.page || 0
+    })
+    .then(data => ({
+      posts: data.objects,
+      total: data.total
+    }))
+    .catch(() => [])
 }
 
 export async function getPost(slug: string) {
