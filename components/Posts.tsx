@@ -11,7 +11,7 @@ import LoadMore from './LoadMore'
 type Props = {
   initialPosts: Post[]
   total: number
-  filters: string
+  filters?: string
 }
 
 const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
