@@ -4,6 +4,7 @@ import { FunctionComponent } from 'react'
 import { getEventos, POSTS_FILTERS } from 'cosmicjs/api'
 import { SITE_URL } from 'components/constants'
 import { Post } from 'cosmicjs/types'
+import Galicia from 'components/Galicia'
 
 const TITLE = 'Eventos | Xira pola vida'
 const DESCRIPTION = `Que veñen as Zapatistas!
@@ -23,11 +24,11 @@ const Eventos: FunctionComponent<Props> = ({ posts, total }) => {
         description={DESCRIPTION}
         imageUrl={SITE_URL + '/header.jpg'}
       />
-      <div className="bg-bgDim p-3 rounded-xl max-w-2xl text-center shadow-lg my-4 mx-auto">
-        <h2 className="font-bold text-xl">Eventos</h2>
-        <p className="text-lg mt-2">
-          Aquí podes consultar os próximos actos da coordinadora galega
-        </p>
+      <div className="flex justify-center">
+        <div className="p-4 my-4 text-center shadow-lg bg-bgDim rounded-xl">
+          <h4 className="mb-2 text-xl">Filtra por provincia</h4>
+          <Galicia />
+        </div>
       </div>
       <Posts
         initialPosts={posts}
@@ -43,7 +44,7 @@ export async function getStaticProps() {
 
   return {
     props: { posts, total },
-    revalidate: 60
+    revalidate: 60,
   }
 }
 

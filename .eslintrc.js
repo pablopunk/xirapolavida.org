@@ -17,6 +17,5 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     'no-unused-vars': 'error',
-    'arrow-parens': ['error', 'as-needed'],
   },
 }

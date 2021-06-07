@@ -5,6 +5,8 @@ import { GiPaperBoat } from 'react-icons/gi'
 import Nav from './Nav'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
+import Galicia from './Galicia'
+import styles from './Layout.module.css'
 
 type Props = {}
 
@@ -14,40 +16,42 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
 
   return (
     <>
-      <header className="flex items-center justify-between py-2 px-4 bg-bgDim h-header">
+      <header className="flex items-center justify-between px-4 py-2 bg-bgDim h-header">
         <Link href="/">
-          <a className="text-accent2 text-6xl flex items-center">
+          <a className="flex items-center text-6xl text-accent2">
             <GiPaperBoat />
-            <h1 className="text-2xl font-bold px-2">
+            <h1 className="px-2 text-2xl font-bold">
               <span className="text-accent">Xira pola</span> Vida
             </h1>
           </a>
         </Link>
         <Nav />
       </header>
-      {index && (
-        <div className="relative h-[100px]">
-          <Image
-            src="/header.jpg"
-            layout="fill"
-            objectFit="cover"
-            className="filter blur-md transform scale-110"
-          />
-        </div>
-      )}
-      <main
-        className={classNames(
-          'mx-auto max-w-4xl flex items-start justify-center',
-          {
-            index
-          }
+      <div className="relative">
+        {index && (
+          <div className="relative h-[100px]">
+            <Image
+              src="/header.jpg"
+              layout="fill"
+              objectFit="cover"
+              className="transform scale-110 filter blur-md"
+            />
+          </div>
         )}
-      >
-        <div className="p-2">{children}</div>
-      </main>
+        <main
+          className={classNames(
+            'mx-auto max-w-4xl flex items-start justify-center',
+            {
+              index,
+            }
+          )}
+        >
+          <div className="p-2">{children}</div>
+        </main>
+      </div>
       <footer className="relative h-footer">
         <div className="bg-fg text-bgDim opacity-70 flex items-center justify-center z-10 h-[60px] absolute left-0 right-0">
-          <p className="px-4 opacity-80 hidden md:block">
+          <p className="hidden px-4 opacity-80 md:block">
             Coordinadora galega da Xira zapatista pola Vida. 2021
           </p>
           <a href="mailto:xirapolavida@riseup.net" className="px-4">
@@ -58,7 +62,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
           src="/header.jpg"
           layout="fill"
           objectFit="cover"
-          className="filter blur-md transform scale-110 "
+          className="transform scale-110 filter blur-md "
         />
       </footer>
       <style jsx>{`

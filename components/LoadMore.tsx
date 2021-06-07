@@ -25,7 +25,7 @@ const LoadMore: FunctionComponent<Props> = ({ canLoadMore, onLoadMore }) => {
   return (
     <div
       ref={wrapperRef}
-      className="w-full flex items-center justify-center my-8"
+      className="flex items-center justify-center w-full my-8"
     >
       <HashLoader color="#14b8a6" />
     </div>

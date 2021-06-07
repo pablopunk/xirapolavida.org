@@ -6,7 +6,7 @@ const PAGE_SIZE = 5
 const api = Cosmic()
 const bucket = api.bucket({
   slug: process.env.COSMICJS_BUCKET_SLUG,
-  read_key: process.env.COSMICJS_READ_KEY
+  read_key: process.env.COSMICJS_READ_KEY,
 })
 
 type Options = {
@@ -16,8 +16,8 @@ type Options = {
 
 export const POSTS_FILTERS = {
   eventos: {
-    'metadata.categories': { $regex: 'eventos' }
-  }
+    'metadata.categories': { $regex: 'eventos' },
+  },
 }
 
 export async function getEventos(options?: Options): Promise<{
@@ -26,7 +26,20 @@ export async function getEventos(options?: Options): Promise<{
 }> {
   return getPosts({
     ...options,
-    filters: POSTS_FILTERS.eventos
+    filters: POSTS_FILTERS.eventos,
+  })
+}
+
+export async function getEventosInLocation(
+  id: string,
+  options?: Options
+): Promise<{
+  posts: Post[]
+  total: number
+}> {
+  return getPosts({
+    ...options,
+    filters: { 'metadata.categories': { $regex: id } },
   })
 }
 
@@ -40,29 +53,29 @@ export async function getPosts(options?: Options): Promise<{
       props: 'slug,title,content,thumbnail,published_at,metadata',
       limit: PAGE_SIZE,
       sort: '-created_at',
-      skip: PAGE_SIZE * options?.page || 0
+      skip: PAGE_SIZE * options?.page || 0,
     })
-    .then(data => ({
+    .then((data) => ({
       posts: data.objects,
-      total: data.total
+      total: data.total,
     }))
-    .catch(() => [])
+    .catch(() => ({ posts: [], total: 0 }))
 }
 
 export async function getPost(slug: string) {
   return bucket
     .getObjects({
       query: { slug },
-      props: 'title,content,slug,thumbnail,published_at,metadata'
+      props: 'title,content,slug,thumbnail,published_at,metadata',
     })
-    .then(data => data.objects[0])
+    .then((data) => data.objects[0])
     .catch(() => null)
 }
 
 export async function getColectivos() {
   return bucket
     .getObjects({ query: { id: '60a2b4aca3d4f40008148afc' } })
-    .then(data => data.objects[0])
-    .then(data => data?.metadata?.text?.split('\n'))
+    .then((data) => data.objects[0])
+    .then((data) => data?.metadata?.text?.split('\n'))
     .catch(() => null)
 }
