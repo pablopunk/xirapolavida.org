@@ -5,8 +5,6 @@ import { GiPaperBoat } from 'react-icons/gi'
 import Nav from './Nav'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
-import Galicia from './Galicia'
-import styles from './Layout.module.css'
 
 type Props = {}
 
