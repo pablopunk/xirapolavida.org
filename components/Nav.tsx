@@ -13,23 +13,23 @@ const links = [
   {
     label: 'Eventos',
     Icon: BiCalendarWeek,
-    url: '/eventos'
+    url: '/eventos',
   },
   {
     label: 'Colectivos',
     Icon: FaPeopleCarry,
-    url: '/colectivos'
+    url: '/colectivos',
   },
   {
     label: 'Blogue Europeo',
     Icon: FiExternalLink,
-    url: 'https://viajezapatista.eu/gl/'
+    url: 'https://viajezapatista.eu/gl/',
   },
   {
     label: 'Blogue Zapatista',
     Icon: FiExternalLink,
-    url: 'http://enlacezapatista.ezln.org.mx/'
-  }
+    url: 'http://enlacezapatista.ezln.org.mx/',
+  },
 ]
 
 const Nav: FunctionComponent = () => {
@@ -57,17 +57,17 @@ const Nav: FunctionComponent = () => {
           'md:relative md:top-0 md:flex md:text-xl md:p-0 md:bg-transparent md:h-full',
           {
             'hidden md:flex': !isOpen,
-            block: isOpen
+            block: isOpen,
           }
         )}
       >
-        {links.map(link => (
+        {links.map((link) => (
           <Link key={link.url} href={link.url}>
             <a
               className={classNames(
-                'flex items-center px-2 py-3 md:flex-row-reverse transition-colors md:hover:bg-bg hover:text-accent2 transition-colors border-t last:border-b md:border-none text-lg rounded-md',
+                'flex items-center px-2 py-3 md:flex-row-reverse md:hover:bg-bg hover:text-accent2 transition-colors border-t last:border-b md:border-none text-lg rounded-md',
                 {
-                  'text-accent': asPath === link.url
+                  'text-accent': asPath === link.url,
                 }
               )}
             >
