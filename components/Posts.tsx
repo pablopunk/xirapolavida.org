@@ -22,11 +22,11 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
       ? `/api/posts/${page}?filters=${filters}`
       : `/api/posts/${page}?`
     return fetch(url)
-      .then(r => r.json())
-      .then(responseData => {
+      .then((r) => r.json())
+      .then((responseData) => {
         setState({
           page: page + 1,
-          posts: [...posts, ...responseData.posts]
+          posts: [...posts, ...responseData.posts],
         })
       })
   }
@@ -35,24 +35,24 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
 
   return (
     <div>
-      {posts.map(post => {
+      {posts.map((post) => {
         const date = new Date(post.published_at).toLocaleDateString()
         const content = parseParagraphs(post.content)
-          .map(node => node.text)
+          .map((node) => node.text)
           .filter(Boolean)
           .slice(0, 1)
 
         return (
           <div key={post.slug}>
             <Link href={`/${post.slug}`} passHref>
-              <a className="mx-auto mb-10 md:mx-0 flex flex-col md:flex-row items-center md:bg-bgDim rounded-lg md:shadow-lg group hover:cursor-pointer">
+              <a className="flex flex-col items-center mx-auto mb-10 rounded-lg md:mx-0 md:flex-row md:bg-bgDim md:shadow-lg group hover:cursor-pointer">
                 <div>
                   <div className="hidden md:block relative w-[210px] h-[150px] rounded-lg shadow-xl">
                     <Image
                       src={post.thumbnail}
                       layout="fill"
                       objectFit="cover"
-                      className="rounded-tl-lg rounded-bl-lg filter group-hover:grayscale group-hover:opacity-80 transition-all"
+                      className="transition-all rounded-tl-lg rounded-bl-lg filter group-hover:grayscale group-hover:opacity-80"
                     />
                   </div>
                   <div className="block md:hidden">
@@ -64,11 +64,11 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
                     />
                   </div>
                 </div>
-                <div className="ml-4 h-full w-full my-auto pr-4">
-                  <div className="opacity-70 flex items-center justify-between">
+                <div className="w-full h-full pr-4 my-auto ml-4">
+                  <div className="flex items-center justify-between opacity-70">
                     <span>{date}</span>
                     {isEvent(post) && (
-                      <span className="text-accent2 flex items-center">
+                      <span className="flex items-center text-accent2">
                         <span>
                           <BiCalendarWeek />
                         </span>
@@ -76,12 +76,12 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
                       </span>
                     )}
                   </div>
-                  <h3 className="text-2xl my-2 block text-accent group-hover:text-accent2 transition-colors">
+                  <h3 className="block my-2 text-2xl transition-colors text-accent group-hover:text-accent2">
                     {post.title}
                   </h3>
-                  <div className="hidden md:block max-w-lg">
+                  <div className="hidden max-w-lg md:block">
                     <div className="line-clamp-1">
-                      {content.map(html => (
+                      {content.map((html) => (
                         <p
                           key={html}
                           dangerouslySetInnerHTML={{ __html: html }}

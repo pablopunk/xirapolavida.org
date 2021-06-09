@@ -6,7 +6,6 @@ import { SITE_URL } from 'components/constants'
 import { Post } from 'cosmicjs/types'
 import { GetStaticPaths, GetStaticProps } from 'next'
 
-const TITLE = 'Eventos | Xira pola vida'
 const DESCRIPTION = `Que veñen as Zapatistas!
 Neste blogue podes obter información sobre a chegada, a benvida, e todos os actos
  que se farán na Galiza, así como da organización destes e mesmo participar neles!`
@@ -30,7 +29,7 @@ const Eventos: FunctionComponent<Props> = ({ posts, total, provincia }) => {
   return (
     <>
       <Seo
-        title={TITLE}
+        title={`Eventos en ${labelForId[provincia]} | Xira pola Vida`}
         description={DESCRIPTION}
         imageUrl={SITE_URL + '/header.jpg'}
       />

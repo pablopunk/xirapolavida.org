@@ -14,16 +14,25 @@ type Options = {
   filters?: { [key: string]: any } // e.g 'metadata.categories': { $regex: 'eventos' }
 }
 
+type QueryResult = {
+  posts: Post[]
+  total: number
+}
+
 export const POSTS_FILTERS = {
   eventos: {
     'metadata.categories': { $regex: 'eventos' },
   },
+  colabora: {
+    'metadata.categories': { $regex: 'colabora' },
+  },
 }
 
-export async function getEventos(options?: Options): Promise<{
-  posts: Post[]
-  total: number
-}> {
+export async function getColabora(options?: Options): Promise<QueryResult> {
+  return getPosts({ ...options, filters: POSTS_FILTERS.colabora })
+}
+
+export async function getEventos(options?: Options): Promise<QueryResult> {
   return getPosts({
     ...options,
     filters: POSTS_FILTERS.eventos,
@@ -33,10 +42,7 @@ export async function getEventos(options?: Options): Promise<{
 export async function getEventosInLocation(
   id: string,
   options?: Options
-): Promise<{
-  posts: Post[]
-  total: number
-}> {
+): Promise<QueryResult> {
   return getPosts({
     ...options,
     filters: { 'metadata.categories': { $regex: id } },
