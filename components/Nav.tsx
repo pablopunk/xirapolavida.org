@@ -1,11 +1,14 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import { FiExternalLink } from 'react-icons/fi'
-import { BiCalendarWeek, BiBuildingHouse } from 'react-icons/bi'
+import {
+  BiCalendarWeek,
+  BiBuildingHouse,
+  BiDotsVerticalRounded,
+} from 'react-icons/bi'
 import { BsPeopleFill } from 'react-icons/bs'
 import { FaPeopleCarry } from 'react-icons/fa'
 import { HiMenuAlt3 } from 'react-icons/hi'
 import { MdClose } from 'react-icons/md'
-import { TiChevronRight } from 'react-icons/ti'
 import Link from 'next/link'
 import classNames from 'classnames'
 import { useLockBodyScroll } from 'react-use'
@@ -102,31 +105,42 @@ const Desktop = ({ asPath }) => {
       ))}
       <div className="p-4 text-lg">
         <Menu>
-          <Menu.Button className="flex items-center focus:outline-none">
-            <TiChevronRight className="transform rotate-90" />
-            <span>Máis</span>
-          </Menu.Button>
-          <Menu.Items className="absolute flex flex-col mt-2 border rounded-md z-1 bg-bgDim right-2">
-            {restLinks.map((link) => (
-              <Menu.Item key={link.url}>
-                <Link href={link.url}>
-                  <a
-                    className={classNames(
-                      'flex items-center cursor-pointer px-4 py-2 border-b last:border-none hover:bg-bg hover:text-accent',
-                      {
-                        'text-accent': link.url === asPath,
-                      }
-                    )}
-                  >
-                    <span className="pr-1">
-                      <link.Icon />
-                    </span>
-                    <span>{link.label}</span>
-                  </a>
-                </Link>
-              </Menu.Item>
-            ))}
-          </Menu.Items>
+          {({ open }) => (
+            <>
+              <Menu.Button
+                className={classNames(
+                  'flex items-center px-2 border rounded-md focus:outline-none transition-colors',
+                  {
+                    'text-accent': open,
+                  }
+                )}
+              >
+                <BiDotsVerticalRounded />
+                <span>Máis</span>
+              </Menu.Button>
+              <Menu.Items className="absolute flex flex-col border rounded-md shadow-lg z-1 bg-bgDim right-4">
+                {restLinks.map((link) => (
+                  <Menu.Item key={link.url}>
+                    <Link href={link.url}>
+                      <a
+                        className={classNames(
+                          'flex items-center cursor-pointer px-4 py-2 border-b last:border-none hover:bg-bg hover:text-accent',
+                          {
+                            'text-accent': link.url === asPath,
+                          }
+                        )}
+                      >
+                        <span className="pr-1">
+                          <link.Icon />
+                        </span>
+                        <span>{link.label}</span>
+                      </a>
+                    </Link>
+                  </Menu.Item>
+                ))}
+              </Menu.Items>
+            </>
+          )}
         </Menu>
       </div>
     </div>

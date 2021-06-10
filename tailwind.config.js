@@ -12,16 +12,17 @@ module.exports = {
         bgDim: 'var(--color-bgDim)',
         accent: 'var(--color-accent)',
         accent2: 'var(--color-accent2)',
-        ...colors
+        transparent: 'transparent',
+        ...colors,
       },
       spacing: {
         header: 'var(--header-height)',
-        footer: 'var(--footer-height)'
-      }
-    }
+        footer: 'var(--footer-height)',
+      },
+    },
   },
   variants: {
-    extend: {}
+    extend: {},
   },
-  plugins: [require('@tailwindcss/line-clamp')]
+  plugins: [require('@tailwindcss/line-clamp')],
 }
