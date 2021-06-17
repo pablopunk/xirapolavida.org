@@ -87,13 +87,20 @@ const Mobile = ({ isOpen, asPath }) => (
 const Desktop = ({ asPath }) => {
   const lg = useMedia('(min-width: 1024px)')
   const xl = useMedia('(min-width: 1280px)')
-  const minus = xl ? 0 : lg ? 1 : 2
-  const firstLinks = links.slice(0, MAX_LINKS_DESKTOP - minus)
-  const restLinks = links.slice(MAX_LINKS_DESKTOP - minus, links.length)
+  const [navLinks, setNavLinks] = useState([])
+  const [menuLinks, setMenuLinks] = useState([])
+
+  useEffect(() => {
+    const takeSomeLinksOut = xl ? 0 : lg ? 1 : 2
+    const maxOnNav = MAX_LINKS_DESKTOP - takeSomeLinksOut
+
+    setNavLinks(links.slice(0, maxOnNav))
+    setMenuLinks(links.slice(maxOnNav, links.length))
+  }, [lg, xl])
 
   return (
     <div className="hidden md:flex md:items-center">
-      {firstLinks.map((link) => (
+      {navLinks.map((link) => (
         <div key={'nav-' + link.url}>
           <Link href={link.url}>
             <a
@@ -128,7 +135,7 @@ const Desktop = ({ asPath }) => {
                 <span>Máis</span>
               </Menu.Button>
               <Menu.Items className="absolute flex flex-col border rounded-md shadow-lg z-1 bg-bgDim right-4">
-                {restLinks.map((link) => (
+                {menuLinks.map((link) => (
                   <Menu.Item key={'menu-' + link.url}>
                     <Link href={link.url}>
                       <a
