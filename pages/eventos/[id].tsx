@@ -1,23 +1,25 @@
 import Posts from 'components/Posts'
 import Seo from 'components/Seo'
 import { FunctionComponent } from 'react'
-import { getEventosInLocation, POSTS_FILTERS } from 'cosmicjs/api'
 import { SITE_URL } from 'components/constants'
 import { Post } from 'cosmicjs/types'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { getFilterForTags, getPostsWithTags } from 'cosmicjs/api'
 
 const DESCRIPTION = `Que veñen as Zapatistas!
 Neste blogue podes obter información sobre a chegada, a benvida, e todos os actos
  que se farán na Galiza, así como da organización destes e mesmo participar neles!`
 
-const labelForId = {
+type Provincia = 'corunha' | 'pontevedra' | 'ourense' | 'lugo'
+
+const PROVINCIAS: Provincia[] = ['corunha', 'pontevedra', 'ourense', 'lugo']
+
+const labelForId: Record<Provincia, string> = {
   corunha: 'A Coruña',
   pontevedra: 'Pontevedra',
   ourense: 'Ourense',
   lugo: 'Lugo',
 }
-
-type Provincia = keyof typeof labelForId
 
 type Props = {
   posts: Post[]
@@ -42,7 +44,7 @@ const Eventos: FunctionComponent<Props> = ({ posts, total, provincia }) => {
       <Posts
         initialPosts={posts}
         total={total}
-        filters={JSON.stringify(POSTS_FILTERS.eventos)}
+        filters={JSON.stringify(getFilterForTags([provincia]))}
       />
       {posts.length === 0 && (
         <p className="text-2xl text-accent">
@@ -54,8 +56,8 @@ const Eventos: FunctionComponent<Props> = ({ posts, total, provincia }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-  const id = ctx.params.id
-  const { posts, total } = await getEventosInLocation(id as string)
+  const id = ctx.params.id as Provincia
+  const { posts, total } = await getPostsWithTags([id])
 
   return {
     props: { posts, total, provincia: id as Provincia },
@@ -65,8 +67,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
 export const getStaticPaths: GetStaticPaths<{ id: keyof typeof labelForId }> =
   async () => {
-    const ids = ['corunha', 'pontevedra', 'ourense', 'lugo']
-    const paths = ids.map((id: Provincia) => ({
+    const paths = PROVINCIAS.map((id: Provincia) => ({
       params: { id },
     }))
 
