@@ -42,16 +42,28 @@ type Props = { post: Post }
 
 const PostComponent: FunctionComponent<Props> = ({ post }) => (
   <div>
-    <div className="relative max-w-3xl mx-auto w-full">
-      <img src={post.thumbnail} className="rounded-lg mx-auto" loading="lazy" />
+    <div className="relative w-full max-w-3xl mx-auto">
+      {post.thumbnail && (
+        <img
+          src={post.thumbnail}
+          className="mx-auto rounded-lg"
+          loading="lazy"
+        />
+      )}
     </div>
-    <div className="text-center">
-      {new Date(post.published_at).toLocaleDateString()}
-    </div>
-    <h2 className="text-3xl pt-2 pb-4 text-accent text-center">{post.title}</h2>
+    {post.thumbnail && (
+      <div className="text-center">
+        {new Date(post.published_at).toLocaleDateString()}
+      </div>
+    )}
+    {post.title && (
+      <h2 className="pt-2 pb-4 text-3xl text-center text-accent">
+        {post.title}
+      </h2>
+    )}
     <SRLWrapper>
       <Body
-        className="max-w-2xl mx-auto px-3"
+        className="max-w-2xl px-3 mx-auto"
         dangerouslySetInnerHTML={{ __html: post.content }}
       ></Body>
     </SRLWrapper>

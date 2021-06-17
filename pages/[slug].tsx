@@ -16,10 +16,14 @@ const PostPage: FunctionComponent<Props> = ({ post }) => {
     return <p className="mt-6 text-xl">Cargando publicación...</p>
   }
 
-  const description = parseParagraphs(post.content)
-    .map(node => node.text)
-    .filter(Boolean)
-    .join('\n')
+  let description = post.metadata.description
+
+  if (!description) {
+    description = parseParagraphs(post.content)
+      .map((node) => node.text)
+      .filter(Boolean)
+      .join('\n')
+  }
 
   return (
     <>
@@ -33,7 +37,7 @@ const PostPage: FunctionComponent<Props> = ({ post }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ctx => {
+export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
   const { slug } = ctx.params
   const post = await getPost(slug as string)
 
@@ -46,7 +50,7 @@ export const getStaticProps: GetStaticProps<Props> = async ctx => {
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const { posts } = await getPosts()
-  const paths = posts.map(post => ({ params: { slug: post.slug } }))
+  const paths = posts.map((post) => ({ params: { slug: post.slug } }))
 
   return { paths, fallback: true }
 }

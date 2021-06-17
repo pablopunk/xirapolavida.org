@@ -1,20 +1,20 @@
+import { Menu } from '@headlessui/react'
+import classNames from 'classnames'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { FunctionComponent, useEffect, useState } from 'react'
-import { FiExternalLink } from 'react-icons/fi'
 import {
-  BiCalendarWeek,
   BiBuildingHouse,
+  BiCalendarWeek,
   BiDotsVerticalRounded,
   BiFemaleSign,
 } from 'react-icons/bi'
 import { BsPeopleFill } from 'react-icons/bs'
 import { FaPeopleCarry } from 'react-icons/fa'
-import { HiMenuAlt3 } from 'react-icons/hi'
+import { FiExternalLink } from 'react-icons/fi'
+import { HiChatAlt, HiMenuAlt3 } from 'react-icons/hi'
 import { MdClose } from 'react-icons/md'
-import Link from 'next/link'
-import classNames from 'classnames'
 import { useLockBodyScroll, useMedia } from 'react-use'
-import { useRouter } from 'next/router'
-import { Menu } from '@headlessui/react'
 
 const MAX_LINKS_DESKTOP = 5
 
@@ -38,6 +38,11 @@ const links = [
     label: 'Feminismo',
     Icon: BiFemaleSign,
     url: '/feminismo',
+  },
+  {
+    label: 'Contacto',
+    Icon: HiChatAlt,
+    url: '/contacto',
   },
   {
     label: 'Colectivos',
@@ -85,13 +90,14 @@ const Mobile = ({ isOpen, asPath }) => (
 )
 
 const Desktop = ({ asPath }) => {
-  const lg = useMedia('(min-width: 1024px)')
+  const md = useMedia('(min-width: 700px)')
+  const lg = useMedia('(min-width: 1000px)')
   const xl = useMedia('(min-width: 1280px)')
   const [navLinks, setNavLinks] = useState([])
   const [menuLinks, setMenuLinks] = useState([])
 
   useEffect(() => {
-    const takeSomeLinksOut = xl ? 0 : lg ? 1 : 2
+    const takeSomeLinksOut = xl ? 0 : lg ? 1 : md ? 2 : 3
     const maxOnNav = MAX_LINKS_DESKTOP - takeSomeLinksOut
 
     setNavLinks(links.slice(0, maxOnNav))

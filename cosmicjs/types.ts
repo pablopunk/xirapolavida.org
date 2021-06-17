@@ -5,6 +5,7 @@ export type Post = {
   thumbnail: string // url
   published_at: string
   metadata: {
-    categories: string
+    categories?: string
+    description?: string
   }
 }
