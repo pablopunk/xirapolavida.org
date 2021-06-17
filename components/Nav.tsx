@@ -94,7 +94,7 @@ const Desktop = ({ asPath }) => {
   return (
     <div className="hidden md:flex md:items-center">
       {firstLinks.map((link) => (
-        <div key={link.url}>
+        <div key={'nav-' + link.url}>
           <Link href={link.url}>
             <a
               className={classNames(
@@ -129,7 +129,7 @@ const Desktop = ({ asPath }) => {
               </Menu.Button>
               <Menu.Items className="absolute flex flex-col border rounded-md shadow-lg z-1 bg-bgDim right-4">
                 {restLinks.map((link) => (
-                  <Menu.Item key={link.url}>
+                  <Menu.Item key={'menu-' + link.url}>
                     <Link href={link.url}>
                       <a
                         className={classNames(
