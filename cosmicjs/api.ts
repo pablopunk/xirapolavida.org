@@ -26,6 +26,13 @@ export const POSTS_FILTERS = {
   colabora: {
     'metadata.categories': { $regex: 'colabora' },
   },
+  feminismo: {
+    'metadata.categories': { $regex: 'feminismo' },
+  },
+}
+
+export async function getFeminismo(options?: Options): Promise<QueryResult> {
+  return getPosts({ ...options, filters: POSTS_FILTERS.feminismo })
 }
 
 export async function getColabora(options?: Options): Promise<QueryResult> {

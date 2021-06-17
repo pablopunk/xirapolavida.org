@@ -4,6 +4,7 @@ import {
   BiCalendarWeek,
   BiBuildingHouse,
   BiDotsVerticalRounded,
+  BiFemaleSign,
 } from 'react-icons/bi'
 import { BsPeopleFill } from 'react-icons/bs'
 import { FaPeopleCarry } from 'react-icons/fa'
@@ -11,11 +12,11 @@ import { HiMenuAlt3 } from 'react-icons/hi'
 import { MdClose } from 'react-icons/md'
 import Link from 'next/link'
 import classNames from 'classnames'
-import { useLockBodyScroll } from 'react-use'
+import { useLockBodyScroll, useMedia } from 'react-use'
 import { useRouter } from 'next/router'
 import { Menu } from '@headlessui/react'
 
-const MAX_LINKS_DESKTOP = 3
+const MAX_LINKS_DESKTOP = 4
 
 const links = [
   {
@@ -32,6 +33,11 @@ const links = [
     label: 'Colabora',
     Icon: FaPeopleCarry,
     url: '/colabora',
+  },
+  {
+    label: 'Feminismo',
+    Icon: BiFemaleSign,
+    url: '/feminismo',
   },
   {
     label: 'Colectivos',
@@ -79,8 +85,10 @@ const Mobile = ({ isOpen, asPath }) => (
 )
 
 const Desktop = ({ asPath }) => {
-  const firstLinks = links.slice(0, MAX_LINKS_DESKTOP)
-  const restLinks = links.slice(MAX_LINKS_DESKTOP, links.length)
+  const isWide = useMedia('(min-width: 1024px)')
+  const minus = isWide ? 0 : 1
+  const firstLinks = links.slice(0, MAX_LINKS_DESKTOP - minus)
+  const restLinks = links.slice(MAX_LINKS_DESKTOP - minus, links.length)
 
   return (
     <div className="hidden md:flex">
