@@ -16,7 +16,7 @@ import { useLockBodyScroll, useMedia } from 'react-use'
 import { useRouter } from 'next/router'
 import { Menu } from '@headlessui/react'
 
-const MAX_LINKS_DESKTOP = 4
+const MAX_LINKS_DESKTOP = 5
 
 const links = [
   {
@@ -85,8 +85,9 @@ const Mobile = ({ isOpen, asPath }) => (
 )
 
 const Desktop = ({ asPath }) => {
-  const isWide = useMedia('(min-width: 1024px)')
-  const minus = isWide ? 0 : 1
+  const lg = useMedia('(min-width: 1024px)')
+  const xl = useMedia('(min-width: 1280px)')
+  const minus = xl ? 0 : lg ? 1 : 2
   const firstLinks = links.slice(0, MAX_LINKS_DESKTOP - minus)
   const restLinks = links.slice(MAX_LINKS_DESKTOP - minus, links.length)
 
@@ -97,7 +98,7 @@ const Desktop = ({ asPath }) => {
           <Link href={link.url}>
             <a
               className={classNames(
-                'text-lg flex items-center p-4 hover:bg-bg transition-colors hover:text-accent rounded-md',
+                'text-lg flex items-center p-4 hover:bg-bg transition hover:text-accent rounded-md hover:shadow-md',
                 {
                   'text-accent': link.url === asPath,
                 }
