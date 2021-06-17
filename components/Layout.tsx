@@ -27,12 +27,10 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
       </header>
       <div className="relative">
         {index && (
-          <div className="relative h-[100px]">
-            <Image
+          <div className="relative h-[100px] overflow-hidden">
+            <img
               src="/header.jpg"
-              layout="fill"
-              objectFit="cover"
-              className="transform scale-110 filter blur-md"
+              className="object-cover transform scale-110 filter blur-md h-[100px] w-full"
             />
           </div>
         )}
