@@ -91,7 +91,7 @@ const Desktop = ({ asPath }) => {
   const restLinks = links.slice(MAX_LINKS_DESKTOP - minus, links.length)
 
   return (
-    <div className="hidden md:flex">
+    <div className="hidden md:flex md:items-center">
       {firstLinks.map((link) => (
         <div key={link.url}>
           <Link href={link.url}>
