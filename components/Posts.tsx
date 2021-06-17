@@ -10,8 +10,8 @@ import classNames from 'classnames'
 const DISPLAY_TAGS: Tag[] = ['eventos', 'colabora']
 
 const colorForTag: Partial<Record<Tag, string>> = {
-  eventos: 'bg-accent2',
-  colabora: 'bg-red-500',
+  eventos: 'text-accent2 bg-bgDim border border-accent2',
+  colabora: 'text-pink-500 bg-bgDim border border-pink-500',
 }
 
 type Props = {
@@ -71,14 +71,14 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
                   </div>
                 </div>
                 <div className="w-full h-full pr-4 my-auto ml-4">
-                  <div className="absolute right-0 flex -top-2">
+                  <div className="absolute flex right-2 -top-2">
                     {post.metadata?.tags
                       ?.filter((tag) => DISPLAY_TAGS.includes(tag))
                       .map((tag) => (
                         <Link key={post.slug + tag} href={`/${tag}`}>
                           <a
                             className={classNames(
-                              'px-1 text-bgDim rounded-md ml-1 hover:opacity-70 transition-opacity',
+                              'px-1 rounded-md ml-1 hover:opacity-60 transition-opacity',
                               colorForTag[tag]
                             )}
                           >
