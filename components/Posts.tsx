@@ -3,10 +3,11 @@ import { Post } from 'cosmicjs/types'
 import Image from 'next/image'
 import { parseParagraphs } from 'utils/htmlParser'
 import Link from 'next/link'
-import { isEvent } from 'cosmicjs/utils'
+import { isColabora, isEvent } from 'cosmicjs/utils'
 import { BiCalendarWeek } from 'react-icons/bi'
 import { useState } from 'react'
 import LoadMore from './LoadMore'
+import { FaPeopleCarry } from 'react-icons/fa'
 
 type Props = {
   initialPosts: Post[]
@@ -73,6 +74,14 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
                           <BiCalendarWeek />
                         </span>
                         <span className="pl-1">Evento</span>
+                      </span>
+                    )}
+                    {isColabora(post) && (
+                      <span className="flex items-center text-pink-600">
+                        <span>
+                          <FaPeopleCarry />
+                        </span>
+                        <span className="pl-1">Colabora</span>
                       </span>
                     )}
                   </div>
