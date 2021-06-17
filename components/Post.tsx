@@ -53,7 +53,7 @@ const PostComponent: FunctionComponent<Props> = ({ post }) => (
     </div>
     {post.thumbnail && (
       <div className="text-center">
-        {new Date(post.published_at).toLocaleDateString()}
+        {new Date(post.created_at).toLocaleDateString()}
       </div>
     )}
     {post.title && (

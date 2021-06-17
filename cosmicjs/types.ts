@@ -12,7 +12,7 @@ export type Post = {
   slug: string
   content: string // html
   thumbnail: string // url
-  published_at: string
+  created_at: string
   metadata: {
     tags?: Tag[]
     description?: string

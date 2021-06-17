@@ -42,7 +42,7 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
   return (
     <div>
       {posts.map((post) => {
-        const date = new Date(post.published_at).toLocaleDateString()
+        const date = new Date(post.created_at).toLocaleDateString()
         const content = parseParagraphs(post.content)
           .map((node) => node.text)
           .filter(Boolean)

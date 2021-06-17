@@ -37,7 +37,7 @@ export async function getPosts(options?: Options): Promise<{
   return bucket
     .getObjects({
       query: { type: 'publicacions', ...(options?.filters || {}) },
-      props: 'slug,title,content,thumbnail,published_at,metadata',
+      props: 'slug,title,content,thumbnail,created_at,metadata',
       limit: PAGE_SIZE,
       sort: '-created_at',
       skip: PAGE_SIZE * options?.page || 0,
@@ -53,7 +53,7 @@ export async function getPost(slug: string) {
   return bucket
     .getObjects({
       query: { slug },
-      props: 'title,content,slug,thumbnail,published_at,metadata',
+      props: 'title,content,slug,thumbnail,created_at,metadata',
     })
     .then((data) => data.objects[0])
     .catch(() => null)
