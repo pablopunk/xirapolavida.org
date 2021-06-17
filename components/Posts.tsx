@@ -1,13 +1,18 @@
 import React, { FunctionComponent } from 'react'
-import { Post } from 'cosmicjs/types'
+import { Post, Tag } from 'cosmicjs/types'
 import Image from 'next/image'
 import { parseParagraphs } from 'utils/htmlParser'
 import Link from 'next/link'
-import { isColabora, isEvent } from 'cosmicjs/utils'
-import { BiCalendarWeek } from 'react-icons/bi'
 import { useState } from 'react'
 import LoadMore from './LoadMore'
-import { FaPeopleCarry } from 'react-icons/fa'
+import classNames from 'classnames'
+
+const DISPLAY_TAGS: Tag[] = ['eventos', 'colabora']
+
+const colorForTag: Partial<Record<Tag, string>> = {
+  eventos: 'bg-accent2',
+  colabora: 'bg-red-500',
+}
 
 type Props = {
   initialPosts: Post[]
@@ -46,7 +51,7 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
         return (
           <div key={post.slug}>
             <Link href={`/${post.slug}`} passHref>
-              <a className="flex flex-col items-center mx-auto mb-10 rounded-lg md:mx-0 md:flex-row md:bg-bgDim md:shadow-lg group hover:cursor-pointer">
+              <a className="relative flex flex-col items-center mx-auto mb-10 rounded-lg md:mx-0 md:flex-row md:bg-bgDim md:shadow-lg group hover:cursor-pointer">
                 <div>
                   <div className="hidden md:block relative w-[210px] h-[150px] rounded-lg shadow-xl">
                     <Image
@@ -66,24 +71,24 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
                   </div>
                 </div>
                 <div className="w-full h-full pr-4 my-auto ml-4">
-                  <div className="flex items-center justify-between opacity-70">
+                  <div className="absolute right-0 flex -top-2">
+                    {post.metadata?.tags
+                      ?.filter((tag) => DISPLAY_TAGS.includes(tag))
+                      .map((tag) => (
+                        <Link key={post.slug + tag} href={`/${tag}`}>
+                          <a
+                            className={classNames(
+                              'px-1 text-bgDim rounded-md ml-1 hover:opacity-70 transition-opacity',
+                              colorForTag[tag]
+                            )}
+                          >
+                            {tag}
+                          </a>
+                        </Link>
+                      ))}
+                  </div>
+                  <div className="opacity-70">
                     <span>{date}</span>
-                    {isEvent(post) && (
-                      <span className="flex items-center text-accent2">
-                        <span>
-                          <BiCalendarWeek />
-                        </span>
-                        <span className="pl-1">Evento</span>
-                      </span>
-                    )}
-                    {isColabora(post) && (
-                      <span className="flex items-center text-pink-600">
-                        <span>
-                          <FaPeopleCarry />
-                        </span>
-                        <span className="pl-1">Colabora</span>
-                      </span>
-                    )}
                   </div>
                   <h3 className="block my-2 text-2xl transition-colors text-accent group-hover:text-accent2">
                     {post.title}

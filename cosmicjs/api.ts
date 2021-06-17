@@ -1,5 +1,5 @@
 import Cosmic from 'cosmicjs'
-import { Post } from './types'
+import { Post, Tag } from './types'
 
 const PAGE_SIZE = 5
 
@@ -19,41 +19,15 @@ type QueryResult = {
   total: number
 }
 
-export const POSTS_FILTERS = {
-  eventos: {
-    'metadata.categories': { $regex: 'eventos' },
-  },
-  colabora: {
-    'metadata.categories': { $regex: 'colabora' },
-  },
-  feminismo: {
-    'metadata.categories': { $regex: 'feminismo' },
-  },
+export function getFilterForTags(tags: Tag[]) {
+  return { 'metadata.tags': { $in: tags } }
 }
 
-export async function getFeminismo(options?: Options): Promise<QueryResult> {
-  return getPosts({ ...options, filters: POSTS_FILTERS.feminismo })
-}
-
-export async function getColabora(options?: Options): Promise<QueryResult> {
-  return getPosts({ ...options, filters: POSTS_FILTERS.colabora })
-}
-
-export async function getEventos(options?: Options): Promise<QueryResult> {
-  return getPosts({
-    ...options,
-    filters: POSTS_FILTERS.eventos,
-  })
-}
-
-export async function getEventosInLocation(
-  id: string,
+export async function getPostsWithTags(
+  tags: Tag[],
   options?: Options
 ): Promise<QueryResult> {
-  return getPosts({
-    ...options,
-    filters: { 'metadata.categories': { $regex: id } },
-  })
+  return getPosts({ ...options, filters: getFilterForTags(tags) })
 }
 
 export async function getPosts(options?: Options): Promise<{

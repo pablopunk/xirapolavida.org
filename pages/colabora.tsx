@@ -1,14 +1,16 @@
 import Posts from 'components/Posts'
 import Seo from 'components/Seo'
 import { FunctionComponent } from 'react'
-import { getColabora, POSTS_FILTERS } from 'cosmicjs/api'
 import { SITE_URL } from 'components/constants'
-import { Post } from 'cosmicjs/types'
+import { Post, Tag } from 'cosmicjs/types'
+import { getFilterForTags, getPostsWithTags } from 'cosmicjs/api'
 
 const TITLE = 'Colabora na Xira pola vida'
 const DESCRIPTION = `Que veñen as Zapatistas!
 Neste blogue podes obter información sobre a chegada, a benvida, e todos os actos
  que se farán na Galiza, así como da organización destes e mesmo participar neles!`
+
+const TAG: Tag = 'colabora'
 
 type Props = {
   posts: Post[]
@@ -39,7 +41,7 @@ const Colabora: FunctionComponent<Props> = ({ posts, total }) => {
       <Posts
         initialPosts={postsWithFormularioFirst}
         total={total}
-        filters={JSON.stringify(POSTS_FILTERS.colabora)}
+        filters={JSON.stringify(getFilterForTags([TAG]))}
       />
       {posts.length === 0 && (
         <p className="text-xl">Todavía non hai publicacións</p>
@@ -49,7 +51,7 @@ const Colabora: FunctionComponent<Props> = ({ posts, total }) => {
 }
 
 export async function getStaticProps() {
-  const { posts, total } = await getColabora()
+  const { posts, total } = await getPostsWithTags([TAG])
 
   return {
     props: { posts, total },

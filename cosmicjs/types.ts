@@ -1,3 +1,12 @@
+export type Tag =
+  | 'colabora'
+  | 'eventos'
+  | 'pontevedra'
+  | 'corunha'
+  | 'ourense'
+  | 'lugo'
+  | 'feminismo'
+
 export type Post = {
   title: string
   slug: string
@@ -5,7 +14,7 @@ export type Post = {
   thumbnail: string // url
   published_at: string
   metadata: {
-    categories?: string
+    tags?: Tag[]
     description?: string
   }
 }

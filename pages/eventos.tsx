@@ -1,15 +1,17 @@
 import Posts from 'components/Posts'
 import Seo from 'components/Seo'
 import { FunctionComponent } from 'react'
-import { getEventos, POSTS_FILTERS } from 'cosmicjs/api'
 import { SITE_URL } from 'components/constants'
-import { Post } from 'cosmicjs/types'
+import { Post, Tag } from 'cosmicjs/types'
 import Galicia from 'components/Galicia'
+import { getFilterForTags, getPostsWithTags } from 'cosmicjs/api'
 
 const TITLE = 'Eventos | Xira pola vida'
 const DESCRIPTION = `Que veñen as Zapatistas!
 Neste blogue podes obter información sobre a chegada, a benvida, e todos os actos
  que se farán na Galiza, así como da organización destes e mesmo participar neles!`
+
+const TAG: Tag = 'eventos'
 
 type Props = {
   posts: Post[]
@@ -33,14 +35,14 @@ const Eventos: FunctionComponent<Props> = ({ posts, total }) => {
       <Posts
         initialPosts={posts}
         total={total}
-        filters={JSON.stringify(POSTS_FILTERS.eventos)}
+        filters={JSON.stringify(getFilterForTags([TAG]))}
       />
     </>
   )
 }
 
 export async function getStaticProps() {
-  const { posts, total } = await getEventos()
+  const { posts, total } = await getPostsWithTags([TAG])
 
   return {
     props: { posts, total },
