@@ -6,6 +6,7 @@ import { getPost, getPosts } from 'cosmicjs/api'
 import { useRouter } from 'next/router'
 import Seo from 'components/Seo'
 import { parseParagraphs } from 'utils/htmlParser'
+import { POST_REVALIDATE_TIME } from 'components/constants'
 
 type Props = { post: Post }
 
@@ -45,7 +46,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     return { notFound: true }
   }
 
-  return { props: { post }, revalidate: 60 }
+  return { props: { post }, revalidate: POST_REVALIDATE_TIME }
 }
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {

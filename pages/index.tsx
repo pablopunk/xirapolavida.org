@@ -4,7 +4,7 @@ import { FunctionComponent } from 'react'
 import { Post } from 'cosmicjs/types'
 import { getPosts } from 'cosmicjs/api'
 import Link from 'next/link'
-import { SITE_URL } from 'components/constants'
+import { PAGE_REVALIDATE_TIME, SITE_URL } from 'components/constants'
 
 const TITLE = 'Xira pola vida'
 const DESCRIPTION = `Que veñen as Zapatistas!
@@ -24,12 +24,12 @@ const Index: FunctionComponent<Props> = ({ posts, total }) => {
         description={DESCRIPTION}
         imageUrl={SITE_URL + '/header.jpg'}
       />
-      <div className="bg-bgDim p-3 rounded-xl max-w-2xl text-center shadow-lg my-4 mx-auto">
-        <h2 className="font-bold text-xl">
+      <div className="max-w-2xl p-3 mx-auto my-4 text-center shadow-lg bg-bgDim rounded-xl">
+        <h2 className="text-xl font-bold">
           Coordinadora <span className="text-accent">galega</span> da Xira
           zapatista pola Vida
         </h2>
-        <p className="text-lg mt-2">
+        <p className="mt-2 text-lg">
           Somos un grupo de{' '}
           <Link href="/colectivos">
             <a className="text-accent2">colectivos</a>
@@ -38,7 +38,7 @@ const Index: FunctionComponent<Props> = ({ posts, total }) => {
           zapatista por Europa, que comeza na nosa terra.
         </p>
       </div>
-      <h3 className="text-3xl py-6 text-center md:text-left">
+      <h3 className="py-6 text-3xl text-center md:text-left">
         {posts.length > 0
           ? 'Últimas publicacións'
           : 'Aínda non hai publicacións'}
@@ -53,7 +53,7 @@ export async function getStaticProps() {
 
   return {
     props: { posts, total },
-    revalidate: 60
+    revalidate: PAGE_REVALIDATE_TIME,
   }
 }
 

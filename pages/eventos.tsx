@@ -1,7 +1,7 @@
 import Posts from 'components/Posts'
 import Seo from 'components/Seo'
 import { FunctionComponent } from 'react'
-import { SITE_URL } from 'components/constants'
+import { PAGE_REVALIDATE_TIME, SITE_URL } from 'components/constants'
 import { Post, Tag } from 'cosmicjs/types'
 import Galicia from 'components/Galicia'
 import { getFilterForTags, getPostsWithTags } from 'cosmicjs/api'
@@ -46,7 +46,7 @@ export async function getStaticProps() {
 
   return {
     props: { posts, total },
-    revalidate: 60,
+    revalidate: PAGE_REVALIDATE_TIME,
   }
 }
 
