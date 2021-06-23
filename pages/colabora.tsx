@@ -37,7 +37,7 @@ const Colabora: FunctionComponent<Props> = ({ posts, total }) => {
         description={DESCRIPTION}
         imageUrl={SITE_URL + '/header.jpg'}
       />
-      <h1 className="my-5 text-3xl">Colabora coa coordinadora galega</h1>
+      <h1 className="my-5 text-3xl">{TITLE}</h1>
       <Posts
         initialPosts={postsWithFormularioFirst}
         total={total}

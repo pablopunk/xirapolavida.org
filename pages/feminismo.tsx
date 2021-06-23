@@ -25,7 +25,7 @@ const Feminismo: FunctionComponent<Props> = ({ posts, total }) => {
         description={DESCRIPTION}
         imageUrl={SITE_URL + '/header.jpg'}
       />
-      <h1 className="my-5 text-3xl">Feminismo na Xira Pola Vida</h1>
+      <h1 className="my-5 text-3xl">{TITLE}</h1>
       <Posts
         initialPosts={posts}
         total={total}
