@@ -10,7 +10,7 @@ const DESCRIPTION = `Que veñen as Zapatistas!
 Neste blogue podes obter información sobre a chegada, a benvida, e todos os actos
  que se farán na Galiza, así como da organización destes e mesmo participar neles!`
 
-const TAG: Tag = 'eventos'
+const TAG: Tag = 'feminismo'
 
 type Props = {
   posts: Post[]
