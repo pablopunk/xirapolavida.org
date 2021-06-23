@@ -49,9 +49,25 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
           .slice(0, 1)
 
         return (
-          <div key={post.slug}>
+          <div key={post.slug} className="relative">
+            <div className="absolute z-10 flex right-2 -top-2">
+              {post.metadata?.tags
+                ?.filter((tag) => DISPLAY_TAGS.includes(tag))
+                .map((tag) => (
+                  <Link key={post.slug + tag} href={`/${tag}`}>
+                    <a
+                      className={classNames(
+                        'px-1 rounded-md ml-1 hover:opacity-60 transition-opacity',
+                        colorForTag[tag]
+                      )}
+                    >
+                      {tag}
+                    </a>
+                  </Link>
+                ))}
+            </div>
             <Link href={`/${post.slug}`} passHref>
-              <a className="relative flex flex-col items-center mx-auto mb-10 rounded-lg md:mx-0 md:flex-row md:bg-bgDim md:shadow-lg group hover:cursor-pointer">
+              <a className="flex flex-col items-center mx-auto mb-10 rounded-lg md:mx-0 md:flex-row md:bg-bgDim md:shadow-lg group hover:cursor-pointer">
                 <div>
                   <div className="hidden md:block relative w-[210px] h-[150px] rounded-lg shadow-xl">
                     <Image
@@ -71,22 +87,6 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
                   </div>
                 </div>
                 <div className="w-full h-full pr-4 my-auto ml-4">
-                  <div className="absolute flex right-2 -top-2">
-                    {post.metadata?.tags
-                      ?.filter((tag) => DISPLAY_TAGS.includes(tag))
-                      .map((tag) => (
-                        <Link key={post.slug + tag} href={`/${tag}`}>
-                          <a
-                            className={classNames(
-                              'px-1 rounded-md ml-1 hover:opacity-60 transition-opacity',
-                              colorForTag[tag]
-                            )}
-                          >
-                            {tag}
-                          </a>
-                        </Link>
-                      ))}
-                  </div>
                   <div className="opacity-70">
                     <span>{date}</span>
                   </div>

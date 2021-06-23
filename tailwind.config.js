@@ -7,13 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        ...colors,
         fg: 'var(--color-fg)',
         bg: 'var(--color-bg)',
         bgDim: 'var(--color-bgDim)',
         accent: 'var(--color-accent)',
         accent2: 'var(--color-accent2)',
+        black: 'var(--color-black)',
+        red: 'var(--color-red)',
         transparent: 'transparent',
-        ...colors,
       },
       spacing: {
         header: 'var(--header-height)',

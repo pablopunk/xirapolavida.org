@@ -4,6 +4,8 @@ body {
   --color-fg: #454545;
   --color-accent: #0284c7;
   --color-accent2: #14b8a6;
+  --color-red: #fd4646;
+  --color-black: #233434;
 
   --header-height: 76px;
   --footer-height: 60px;
