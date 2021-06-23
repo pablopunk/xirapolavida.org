@@ -1,6 +1,6 @@
 function Error({ statusCode }) {
   return (
-    <div className="flex items-center h-full text-6xl mt-[20vh] text-red-400">
+    <div className="flex items-center h-full text-6xl mt-[20vh] text-danger">
       <p>{statusCode ? `Erro ${statusCode}` : 'Ocurreu un erro no cliente'}</p>
     </div>
   )

@@ -36,7 +36,6 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
       <Footer />
       <style jsx>{`
         main {
-          position: relative;
           min-height: calc(100vh - var(--header-height) - var(--footer-height));
         }
         main.index {

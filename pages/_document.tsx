@@ -1,5 +1,6 @@
 import Document, { Main, NextScript, Html, Head } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import darkModeCode from 'dark-mode-code'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -42,6 +43,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script dangerouslySetInnerHTML={{ __html: darkModeCode }} />
         </body>
       </Html>
     )

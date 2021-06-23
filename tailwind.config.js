@@ -13,8 +13,9 @@ module.exports = {
         bgDim: 'var(--color-bgDim)',
         accent: 'var(--color-accent)',
         accent2: 'var(--color-accent2)',
-        black: 'var(--color-black)',
-        red: 'var(--color-red)',
+        logo: 'var(--color-logo)',
+        danger: 'var(--color-danger)',
+        footer: 'var(--color-footer)',
         transparent: 'transparent',
       },
       spacing: {
@@ -22,6 +23,10 @@ module.exports = {
         footer: 'var(--footer-height)',
       },
     },
+    borderColor: (theme) => ({
+      ...theme('colors'),
+      DEFAULT: 'var(--color-border)',
+    }),
   },
   variants: {
     extend: {},

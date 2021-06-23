@@ -8,6 +8,7 @@ import {
   BiCalendarWeek,
   BiDotsVerticalRounded,
   BiFemaleSign,
+  BiMoon,
 } from 'react-icons/bi'
 import { BsPeopleFill } from 'react-icons/bs'
 import { FaPeopleCarry } from 'react-icons/fa'
@@ -18,7 +19,12 @@ import { useLockBodyScroll, useMedia } from 'react-use'
 
 const MAX_LINKS_DESKTOP = 5
 
-const links = [
+const links: Array<{
+  label: string
+  Icon: any
+  url?: string
+  click?(): void
+}> = [
   {
     label: 'Aloxamento',
     Icon: BiBuildingHouse,
@@ -59,23 +65,44 @@ const links = [
     Icon: FiExternalLink,
     url: 'http://enlacezapatista.ezln.org.mx/',
   },
+  {
+    label: 'Cambiar cores',
+    Icon: BiMoon,
+    click: () => window['__toggleDarkMode']?.(),
+  },
 ]
 
 const Mobile = ({ isOpen, asPath }) => (
   <div
     className={classNames(
-      'fixed md:hidden bg-bgDim left-0 top-[76px] bottom-0 right-0 h-screen p-4 text-4xl z-10 overflow-hidden',
+      'fixed md:hidden bg-bgDim left-0 top-[76px] bottom-0 right-0 h-screen p-4 text-4xl overflow-hidden',
       {
         'hidden md:flex': !isOpen,
         block: isOpen,
       }
     )}
   >
-    {links.map((link) => (
-      <Link key={link.url} href={link.url}>
-        <a
+    {links.map((link) =>
+      'url' in link ? (
+        <Link key={link.url} href={link.url}>
+          <a
+            className={classNames(
+              'flex items-center px-2 py-3 border-t last:border-b text-lg rounded-md',
+              {
+                'text-accent': asPath === link.url,
+              }
+            )}
+          >
+            <link.Icon className="pr-1 md:pr-0 md:pl-1" />
+            <span>{link.label}</span>
+          </a>
+        </Link>
+      ) : (
+        <button
+          key={link.url}
+          onClick={link.click}
           className={classNames(
-            'flex items-center px-2 py-3 border-t last:border-b text-lg rounded-md',
+            'flex items-center px-2 py-3 border-t last:border-b text-lg rounded-md w-full',
             {
               'text-accent': asPath === link.url,
             }
@@ -83,9 +110,9 @@ const Mobile = ({ isOpen, asPath }) => (
         >
           <link.Icon className="pr-1 md:pr-0 md:pl-1" />
           <span>{link.label}</span>
-        </a>
-      </Link>
-    ))}
+        </button>
+      )
+    )}
   </div>
 )
 
@@ -108,21 +135,38 @@ const Desktop = ({ asPath }) => {
     <div className="hidden md:flex md:items-center">
       {navLinks.map((link) => (
         <div key={'nav-' + link.url}>
-          <Link href={link.url}>
-            <a
+          {'url' in link ? (
+            <Link href={link.url}>
+              <a
+                className={classNames(
+                  'text-lg flex items-center p-4 hover:bg-bg transition hover:text-accent rounded-md hover:shadow-md',
+                  {
+                    'text-accent': link.url === asPath,
+                  }
+                )}
+              >
+                <span className="pr-1">
+                  <link.Icon />
+                </span>
+                <span>{link.label}</span>
+              </a>
+            </Link>
+          ) : (
+            <button
               className={classNames(
                 'text-lg flex items-center p-4 hover:bg-bg transition hover:text-accent rounded-md hover:shadow-md',
                 {
                   'text-accent': link.url === asPath,
                 }
               )}
+              onClick={link.click}
             >
               <span className="pr-1">
                 <link.Icon />
               </span>
               <span>{link.label}</span>
-            </a>
-          </Link>
+            </button>
+          )}
         </div>
       ))}
       <div className="p-4 text-lg">
@@ -143,21 +187,38 @@ const Desktop = ({ asPath }) => {
               <Menu.Items className="absolute flex flex-col border rounded-md shadow-lg z-1 bg-bgDim right-4">
                 {menuLinks.map((link) => (
                   <Menu.Item key={'menu-' + link.url}>
-                    <Link href={link.url}>
-                      <a
+                    {'url' in link ? (
+                      <Link href={link.url}>
+                        <a
+                          className={classNames(
+                            'flex items-center cursor-pointer px-4 py-2 border-b last:border-none hover:bg-bg hover:text-accent',
+                            {
+                              'text-accent': link.url === asPath,
+                            }
+                          )}
+                        >
+                          <span className="pr-1">
+                            <link.Icon />
+                          </span>
+                          <span>{link.label}</span>
+                        </a>
+                      </Link>
+                    ) : (
+                      <button
                         className={classNames(
                           'flex items-center cursor-pointer px-4 py-2 border-b last:border-none hover:bg-bg hover:text-accent',
                           {
                             'text-accent': link.url === asPath,
                           }
                         )}
+                        onClick={link.click}
                       >
                         <span className="pr-1">
                           <link.Icon />
                         </span>
                         <span>{link.label}</span>
-                      </a>
-                    </Link>
+                      </button>
+                    )}
                   </Menu.Item>
                 ))}
               </Menu.Items>
@@ -180,7 +241,7 @@ const Nav: FunctionComponent = () => {
   }, [asPath])
 
   return (
-    <nav className="relative z-10">
+    <nav className="relative z-30">
       <button onClick={() => setIsOpen(!isOpen)} className="block md:hidden">
         {isOpen ? (
           <MdClose className="text-2xl" />
