@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { SITE_URL } from './constants'
+import { SITE_NAME, SITE_URL } from './constants'
 
 type Props = { title: string; description?: string; imageUrl?: string }
 
@@ -12,6 +12,7 @@ const Seo: FunctionComponent<Props> = ({ title, description, imageUrl }) => {
     <NextSeo
       title={title}
       description={description}
+      canonical={SITE_URL + asPath}
       openGraph={{
         url: SITE_URL + asPath,
         title,
@@ -20,10 +21,16 @@ const Seo: FunctionComponent<Props> = ({ title, description, imageUrl }) => {
           ? [
               {
                 url: imageUrl,
-                alt: title
-              }
+                alt: title,
+              },
             ]
-          : []
+          : [],
+        site_name: SITE_NAME,
+      }}
+      twitter={{
+        handle: '@xirapolavida',
+        site: '@xirapolavida',
+        cardType: 'summary_large_image',
       }}
     />
   )
