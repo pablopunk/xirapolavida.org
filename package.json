@@ -22,6 +22,7 @@
     "cosmicjs": "^4.1.2",
     "dark-mode-code": "^1.0.0",
     "eslint-config-prettier": "^8.3.0",
+    "feed": "^4.2.2",
     "next": "^11.0.0",
     "next-seo": "^4.24.0",
     "node-html-parser": "^3.2.0",

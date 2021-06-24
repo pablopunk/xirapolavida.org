@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="gl">
         <Head>
           <script data-goatcounter="/goat" async src="/count.js"></script>
           <link rel="preconnect" href="https://fonts.gstatic.com" />

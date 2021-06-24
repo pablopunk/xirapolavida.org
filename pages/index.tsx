@@ -4,12 +4,12 @@ import { FunctionComponent } from 'react'
 import { Post } from 'cosmicjs/types'
 import { getPosts } from 'cosmicjs/api'
 import Link from 'next/link'
-import { PAGE_REVALIDATE_TIME, SITE_URL } from 'components/constants'
-
-const TITLE = 'Xira pola vida'
-const DESCRIPTION = `Que veñen as Zapatistas!
-Neste blogue podes obter información sobre a chegada, a benvida, e todos os actos
- que se farán na Galiza, así como da organización destes e mesmo participar neles!`
+import {
+  PAGE_REVALIDATE_TIME,
+  SITE_DESC,
+  SITE_NAME,
+  SITE_URL,
+} from 'components/constants'
 
 type Props = {
   posts: Post[]
@@ -20,8 +20,8 @@ const Index: FunctionComponent<Props> = ({ posts, total }) => {
   return (
     <>
       <Seo
-        title={TITLE}
-        description={DESCRIPTION}
+        title={SITE_NAME}
+        description={SITE_DESC}
         imageUrl={SITE_URL + '/header.jpg'}
       />
       <div className="max-w-2xl p-3 mx-auto my-4 text-center shadow-lg bg-bgDim rounded-xl">
