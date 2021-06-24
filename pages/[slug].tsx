@@ -17,7 +17,7 @@ const PostPage: FunctionComponent<Props> = ({ post }) => {
     return <p className="mt-6 text-xl">Cargando publicación...</p>
   }
 
-  let description = post.metadata.description
+  let description = post.metadata?.description
 
   if (!description) {
     description = parseParagraphs(post.content)
