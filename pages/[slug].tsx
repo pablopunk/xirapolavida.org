@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import { Post } from 'cosmicjs/types'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import PostComponent from 'components/Post'
-import { getPost, getPosts } from 'cosmicjs/api'
+import { getPost, getAllPosts } from 'cosmicjs/api'
 import { useRouter } from 'next/router'
 import Seo from 'components/Seo'
 import { parseParagraphs } from 'utils/htmlParser'
@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 }
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  const { posts } = await getPosts()
+  const posts = await getAllPosts()
   const paths = posts.map((post) => ({ params: { slug: post.slug } }))
 
   return { paths, fallback: true }

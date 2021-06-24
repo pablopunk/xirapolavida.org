@@ -1,5 +1,5 @@
 import { SITE_DESC, SITE_NAME, SITE_URL } from 'components/constants'
-import { getPosts } from 'cosmicjs/api'
+import { getAllPosts } from 'cosmicjs/api'
 import { Feed } from 'feed'
 import { NextPageContext } from 'next'
 import { parseParagraphs } from 'utils/htmlParser'
@@ -16,7 +16,7 @@ export async function getServerSideProps(context: NextPageContext) {
   }
 
   const { res } = context
-  const { posts } = await getPosts()
+  const posts = await getAllPosts()
 
   // posts.forEach((post) => `${SITE_URL}/${post.slug}`)
 

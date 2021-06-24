@@ -49,6 +49,17 @@ export async function getPosts(options?: Options): Promise<{
     .catch(() => ({ posts: [], total: 0 }))
 }
 
+export async function getAllPosts(): Promise<Post[]> {
+  return bucket
+    .getObjects({
+      query: { type: 'publicacions' },
+      props: 'slug,title,content,thumbnail,created_at,metadata',
+      sort: '-created_at',
+    })
+    .then((data) => data.objects || [])
+    .catch(() => [])
+}
+
 export async function getPost(slug: string) {
   return bucket
     .getObjects({
