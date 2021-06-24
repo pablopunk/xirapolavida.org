@@ -16,8 +16,6 @@ body {
   background-color: var(--color-bg);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAYAAACJfM0wAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEpSURBVHgBrZQ9bsJAEIVffop04Qhbpgs3iG8Q0iVVnBMkN4hvQFJBBzfAnMCmpOMGHAHooII32lmBkL0eS37SJ6+1s6PR25kF7HKKSbewa0BSa/A97PokW3QsR9ZkA6Mdd7ApJXuyJE+kREcqSKIU6EgO3oYgsaPXdOhGgwaRmGeN+dL/P/JIFpEzuXRFuOlfTZBXBP5frKfkm7xcxYTi3nDVPQ7evwItBqHNuQze0xTNkirF8x8Y5TT5MBIz1JgELZVoNVXqoWFYYm+FQ/3Ny+XMEemmWGJ5G/KLCmdkgnOVJXlFS0mio34TeC+lfzNd93VvjZphqXsr3uGHRwZhTD70W5IdGZEHTXogKxglFsjl1PWm070QY1KwwdKbGYxvh6ivWOVQ0csn8Os7OIVw9qIAAAAASUVORK5CYII=);
 }
 
 body.dark {
