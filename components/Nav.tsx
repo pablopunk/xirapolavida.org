@@ -99,7 +99,9 @@ const Mobile = ({ isOpen, asPath }) => (
         </Link>
       ) : (
         <button
-          key={link.url}
+          name={link.label}
+          title={link.label}
+          key={'button:' + link.label}
           onClick={link.click}
           className={classNames(
             'flex items-center px-2 py-3 border-t last:border-b text-lg rounded-md w-full',
@@ -153,6 +155,8 @@ const Desktop = ({ asPath }) => {
             </Link>
           ) : (
             <button
+              name={link.label}
+              title={link.label}
               className={classNames(
                 'text-lg flex items-center p-4 hover:bg-bg transition hover:text-accent rounded-md hover:shadow-md',
                 {
@@ -174,6 +178,8 @@ const Desktop = ({ asPath }) => {
           {({ open }) => (
             <>
               <Menu.Button
+                name="alternar-menu"
+                title="Abrir ou pechar o menú"
                 className={classNames(
                   'flex items-center px-2 border rounded-md focus:outline-none transition-colors',
                   {
@@ -205,6 +211,8 @@ const Desktop = ({ asPath }) => {
                       </Link>
                     ) : (
                       <button
+                        name={link.label}
+                        title={link.label}
                         className={classNames(
                           'flex items-center cursor-pointer px-4 py-2 border-b last:border-none hover:bg-bg hover:text-accent',
                           {
@@ -242,7 +250,12 @@ const Nav: FunctionComponent = () => {
 
   return (
     <nav className="relative z-30">
-      <button onClick={() => setIsOpen(!isOpen)} className="block md:hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="block md:hidden"
+        name="alternar-menu"
+        title="Alternar menu de navegación"
+      >
         {isOpen ? (
           <MdClose className="text-2xl" />
         ) : (
