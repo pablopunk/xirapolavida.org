@@ -9,6 +9,7 @@ import {
   BiDotsVerticalRounded,
   BiFemaleSign,
   BiMoon,
+  BiRss,
 } from 'react-icons/bi'
 import { BsPeopleFill } from 'react-icons/bs'
 import { FaPeopleCarry } from 'react-icons/fa'
@@ -64,6 +65,11 @@ const links: Array<{
     label: 'Blogue Zapatista',
     Icon: FiExternalLink,
     url: 'http://enlacezapatista.ezln.org.mx/',
+  },
+  {
+    label: 'RSS',
+    Icon: BiRss,
+    url: '/rss.xml',
   },
   {
     label: 'Cambiar cores',
