@@ -14,6 +14,7 @@ const Footer = () => (
       <img
         src="/header.jpg"
         className="object-cover w-full h-full overflow-hidden transform scale-110 filter blur-md"
+        loading="lazy"
       />
     </div>
   </footer>
