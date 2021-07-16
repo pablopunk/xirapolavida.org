@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 import { Post, Tag } from 'cosmicjs/types'
-import Image from 'next/image'
 import { parseParagraphs } from 'utils/htmlParser'
 import Link from 'next/link'
 import { useState } from 'react'
