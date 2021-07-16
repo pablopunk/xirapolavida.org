@@ -18,7 +18,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
           <div className="relative h-[100px] overflow-hidden">
             <img
               src="/header.jpg"
-              className="object-cover transform scale-110 filter blur-md h-[100px] w-full"
+              className="object-cover transform scale-110 filter blur-md h-[100px]"
             />
           </div>
         )}

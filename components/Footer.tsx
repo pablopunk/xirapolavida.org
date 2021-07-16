@@ -10,12 +10,12 @@ const Footer = () => (
         xirapolavida@riseup.net
       </a>
     </div>
-    <Image
-      src="/header.jpg"
-      layout="fill"
-      objectFit="cover"
-      className="transform scale-110 filter blur-md "
-    />
+    <div className="w-full overflow-hidden h-footer">
+      <img
+        src="/header.jpg"
+        className="object-cover w-full h-full overflow-hidden transform scale-110 filter blur-md"
+      />
+    </div>
   </footer>
 )
 

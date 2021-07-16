@@ -70,19 +70,16 @@ const Posts: FunctionComponent<Props> = ({ initialPosts, total, filters }) => {
               <a className="flex flex-col items-center mx-auto mb-10 rounded-lg md:mx-0 md:flex-row md:bg-bgDim md:shadow-lg group hover:cursor-pointer">
                 <div>
                   <div className="hidden md:block relative w-[210px] h-[150px] rounded-lg shadow-xl">
-                    <Image
+                    <img
                       src={post.thumbnail}
-                      layout="fill"
-                      objectFit="cover"
-                      className="transition-all rounded-tl-lg rounded-bl-lg filter group-hover:grayscale group-hover:opacity-80"
+                      className="object-cover w-full h-full transition-all rounded-tl-lg rounded-bl-lg filter group-hover:grayscale group-hover:opacity-80"
+                      loading="lazy"
                     />
                   </div>
-                  <div className="block md:hidden">
-                    <Image
+                  <div className="block md:hidden h-[300px] relative">
+                    <img
                       src={post.thumbnail}
-                      width="1920"
-                      height="1080"
-                      objectFit="cover"
+                      className="object-cover w-full h-full"
                     />
                   </div>
                 </div>
